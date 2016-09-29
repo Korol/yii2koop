@@ -24,8 +24,8 @@ class AppAsset extends AssetBundle
         'css/prettyPhoto.css',
         'css/price-range.css',
         'css/animate.css',
-        'css/main.css',
         'css/responsive.css',
+        'css/main.css',
     ];
     public $js = [
 //        'js/jquery.js',

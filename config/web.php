@@ -45,9 +45,18 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                // магазин
                 'shop/category/<id:\d+>/<slug:[-\w]+>/<page:\d+>' => 'shop/category', // правила задавать именно в такой последовательности!!!
                 'shop/category/<id:\d+>/<slug:[-\w]+>' => 'shop/category', // от более длинного URL - к более короткому!
                 'shop/category/<id:\d+>' => 'shop/category',
+                'shop' => 'shop/index',
+                // новости
+                'news/article/<id:\d+>/<slug:[-\w]+>' => 'news/article',
+                'news/<page:\d+>' => 'news/index',
+                'news' => 'news/index',
+                // статика
+                'about' => 'site/about',
+                'contacts' => 'site/contacts',
             ],
         ],
 

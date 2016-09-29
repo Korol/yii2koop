@@ -9,9 +9,38 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 use app\assets\ltAppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ltAppAsset::register($this);
+
+$top_menu = [
+    'main' => [
+        'title' => 'Главная',
+        'url' => Url::home(),
+    ],
+    'shop' => [
+        'title' => 'Магазин',
+        'url' => Url::to(['shop/index']),
+    ],
+    'news' => [
+        'title' => 'Новости',
+        'url' => Url::to(['news/index']),
+    ],
+    'article' => [
+        'title' => 'Статья',
+        'url' => Url::to(['news/article', 'id' => 23, 'slug' => 'testovaya-statjya']),
+    ],
+    'about' => [
+        'title' => 'О нас',
+        'url' => Url::to(['site/about']),
+    ],
+    'contact' => [
+        'title' => 'Контакты',
+        'url' => Url::to(['site/contact']),
+    ],
+];
+$active_menu_item = isset($this->params['active_menu_item']) ? $this->params['active_menu_item'] : '';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -41,7 +70,7 @@ ltAppAsset::register($this);
     <div class="header_top"><!--header_top-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="contactinfo">
                         <ul class="nav nav-pills">
                             <li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
@@ -49,7 +78,16 @@ ltAppAsset::register($this);
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                    <div class="shop-menu center-block">
+                        <ul class="nav navbar-nav my-service-menu">
+                            <li><a href="#"><i class="fa fa-user"></i> Личный Кабинет</a></li>
+                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
+                            <li><a href="login.html"><i class="fa fa-lock"></i> Вход</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
                     <div class="social-icons pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -67,11 +105,14 @@ ltAppAsset::register($this);
     <div class="header-middle"><!--header-middle-->
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="/images/home/logo.png" alt="" /></a>
+                        <a href="<?= Url::home(); ?>">
+                            <img class="main-logo" src="/images/home/logo_100x100.png" alt="<?=$this->title; ?>" align="left" />
+                            <p class="main-logo-title pull-right">Народная<br/>кооперация</p>
+                        </a>
                     </div>
-                    <div class="btn-group pull-right">
+                    <?php /*div class="btn-group pull-right">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
                                 USA
@@ -93,27 +134,9 @@ ltAppAsset::register($this);
                                 <li><a href="#">Pound</a></li>
                             </ul>
                         </div>
-                    </div>
+                    </div*/?>
                 </div>
-                <div class="col-sm-8">
-                    <div class="shop-menu pull-right">
-                        <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div><!--/header-middle-->
-
-    <div class="header-bottom"><!--header-bottom-->
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9">
+                <div class="col-sm-7">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">Toggle navigation</span>
@@ -122,10 +145,20 @@ ltAppAsset::register($this);
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="mainmenu pull-left">
-                        <ul class="nav navbar-nav collapse navbar-collapse">
-                            <li><a href="index.html" class="active">Home</a></li>
-                            <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                    <div class="mainmenu">
+                        <ul class="nav navbar-nav collapse navbar-collapse my-main-menu">
+                            <?php
+                            foreach($top_menu as $menu_key => $menu_item){
+                                $top_menu_class = ($menu_key == $active_menu_item) ? 'active' : '';
+                            ?>
+                            <li>
+                                <a href="<?=$menu_item['url']; ?>" class="<?=$top_menu_class; ?>"><?= $menu_item['title']; ?></a>
+                            </li>
+                            <?php
+                            }
+                            ?>
+                            <?php /*li><a href="index.html" class="active">Главная</a></li>
+                            <li class="dropdown"><a href="#">Магазин<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="shop.html">Products</a></li>
                                     <li><a href="product-details.html">Product Details</a></li>
@@ -134,31 +167,31 @@ ltAppAsset::register($this);
                                     <li><a href="login.html">Login</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="#">Blog<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
+                            <li class="dropdown"><a href="#">Новости<i class="fa fa-angle-down"></i></a>
+                            <ul role="menu" class="sub-menu">
                                     <li><a href="blog.html">Blog List</a></li>
                                     <li><a href="blog-single.html">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="404.html">404</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
+                            <li><a href="#">404</a></li>
+                            <li><a href="#">Контакты</a></li*/?>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder="Поиск"/>
                     </div>
                 </div>
             </div>
         </div>
-    </div><!--/header-bottom-->
+    </div><!--/header-middle-->
 </header><!--/header-->
 
 <?= $content; ?>
 
 <footer id="footer"><!--Footer-->
-    <div class="footer-top">
+    <?php /*div class="footer-top">
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
@@ -236,9 +269,9 @@ ltAppAsset::register($this);
                 </div>
             </div>
         </div>
-    </div>
+    </div*/?>
 
-    <div class="footer-widget">
+    <?php /*div class="footer-widget">
         <div class="container">
             <div class="row">
                 <div class="col-sm-2">
@@ -302,13 +335,14 @@ ltAppAsset::register($this);
 
             </div>
         </div>
-    </div>
+    </div*/?>
 
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2013 E-SHOPPER Inc. All rights reserved.</p>
-                <p class="pull-right">Designed by <span><a target="_blank" href="http://www.themeum.com">Themeum</a></span></p>
+                <div class="col-sm-12">
+                    <p class="footer-copy-text">Все права защищены &copy; <?= date('Y'); ?></p>
+                </div>
             </div>
         </div>
     </div>

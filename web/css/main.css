@@ -1,4 +1,6 @@
-﻿
+﻿/*
+    green: #328d02
+*/
 /*************************
 *******Typography******
 **************************/
@@ -49,13 +51,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a#scrollUp {
+    display: none;
   bottom: 0px;
   right: 10px;
   padding: 5px 10px;
-  background: #FE980F;
+  /*background: #FE980F;*/
+    background: #328d02;
   color: #FFF;
-  -webkit-animation: bounce 2s ease infinite;
-  animation: bounce 2s ease infinite;
+  /*-webkit-animation: bounce 2s ease infinite;*/
+  /*animation: bounce 2s ease infinite;*/
 }
 
 a#scrollUp i{
@@ -140,7 +144,7 @@ a#scrollUp i{
   border-bottom: 1px solid #f5f5f5;
   margin-left: 0;
   margin-right: 0;
-  padding-bottom: 20px;
+  padding-bottom: 8px;
   padding-top: 20px;
 }
 
@@ -198,7 +202,7 @@ a#scrollUp i{
 
 
 .shop-menu ul li a {
-  background: #FFFFFF;
+  /*background: #FFFFFF;*/
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
@@ -215,8 +219,10 @@ a#scrollUp i{
 
 
 .shop-menu ul li a:hover {
-	color:#fe980f;
-	background:#fff;
+  /*color: #328d02;*/
+    text-decoration: underline;
+	/*color:#fe980f;*/
+	/*background:#fff;*/
 }
 
 
@@ -227,6 +233,21 @@ a#scrollUp i{
 
 .navbar-collapse.collapse{
   padding-left: 0;
+  padding-right: 0;
+}
+
+.mainmenu {
+    margin-top: 10px;
+    text-align: center;
+}
+
+/*centered*/
+.my-main-menu, .my-service-menu {
+    float: none !important;
+}
+.my-main-menu li, .my-service-menu li {
+    display: inline-block;
+    float: none;
 }
 
 .mainmenu ul li{
@@ -249,7 +270,8 @@ a#scrollUp i{
 
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
 	background:none;
-	color:#fdb45e;
+	/*color:#fdb45e;*/
+    text-decoration: underline;
 }
 
 .search_box input {
@@ -660,7 +682,8 @@ ul.sub-menu {
   padding-top: 15px;
 }
 .left-sidebar h2, .brands_products h2 {
-  color: #FE980F;
+  /*color: #FE980F;*/
+    color: #328d02;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -872,7 +895,8 @@ ul.my-category-products > li > a > span.cat-title-badge {
 
 
 h2.title {
-  color: #FE980F;
+  /*color: #FE980F;*/
+    color: #328d02;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -899,7 +923,8 @@ h2.title {
 }
 
 .productinfo h2{
-	color: #FE980F;
+	/*color: #FE980F;*/
+	color: #328d02;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	font-weight: 700;
@@ -940,7 +965,8 @@ h2.title {
 }
 
 .single-products:hover .product-overlay {
-  display:block;
+  /*display:block;*/
+  display:none;
   height:100%;
 }
 
@@ -1035,7 +1061,8 @@ h2.title {
 
 .category-tab ul {
   background: #40403E;
-  border-bottom: 1px solid #FE980F;
+  /*border-bottom: 1px solid #FE980F;*/
+  border-bottom: 1px solid #328d02;
   list-style: none outside none;
   margin: 0 0 30px;
   padding: 0;
@@ -1053,7 +1080,8 @@ h2.title {
 }
 
 .category-tab ul  li  a:hover{
-	background:#FE980F;
+	/*background:#FE980F;*/
+	background:#328d02;
 	color:#fff;
 }
 
@@ -1062,7 +1090,8 @@ h2.title {
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
   -moz-border-top-colors: none;
-  background-color: #FE980F;
+  /*background-color: #FE980F;*/
+  background-color: #328d02;
   border:0px;
   color: #FFFFFF;
   cursor: default;
@@ -1091,7 +1120,8 @@ h2.title {
 }
 
 .recommended-item-control i {
-  background: none repeat scroll 0 0 #FE980F;
+  /*background: none repeat scroll 0 0 #FE980F;*/
+  background: none repeat scroll 0 0 #328d02;
   color: #FFFFFF;
   font-size: 20px;
   padding: 4px 10px;
@@ -2557,4 +2587,20 @@ h2.title {
   color: #FE980F;
 }
 
-
+.main-logo {
+    width: 70px;
+    height: auto;
+}
+.main-logo-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    text-transform: uppercase;
+    line-height: 1.7;
+    margin-top: 3px;
+    color: #328d02;
+}
+.footer-copy-text {
+    text-align: center;
+}
