@@ -9,7 +9,7 @@ $this->title = 'My Yii Application';
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                <?php /*div id="slider-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                         <li data-target="#slider-carousel" data-slide-to="1"></li>
@@ -63,7 +63,7 @@ $this->title = 'My Yii Application';
                     <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                </div>
+                </div*/?>
 
             </div>
         </div>
@@ -75,7 +75,7 @@ $this->title = 'My Yii Application';
 <div class="row">
 <div class="col-sm-3">
     <div class="left-sidebar">
-        <h2>Category</h2>
+        <h2>Категории</h2>
         <div class="category-products my-category-products-div">
             <ul class="catalog my-category-products" id="mainLevel">
                 <?= \app\components\MenuWidget::widget(['tpl' => 'menu']); ?>
@@ -189,8 +189,8 @@ $this->title = 'My Yii Application';
             </div>
         </div><!--/category-products-->
         */ ?>
-        <div class="brands_products"><!--brands_products-->
-            <h2>Brands</h2>
+        <?php /*div class="brands_products"><!--brands_products-->
+            <h2>Производители</h2>
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
@@ -214,7 +214,7 @@ $this->title = 'My Yii Application';
 
         <div class="shipping text-center"><!--shipping-->
             <img src="/images/home/shipping.jpg" alt="" />
-        </div><!--/shipping-->
+        </div><!--/shipping--*/?>
 
     </div>
 </div>

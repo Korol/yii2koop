@@ -11,8 +11,8 @@ namespace app\controllers;
 
 class ShopController extends FrontendController {
 
-    public function actionCategory($id, $url = '', $page = 1)
+    public function actionCategory($id, $slug = '', $page = 1)
     {
-        var_dump($id, $url, $page);
+        var_dump($id, $slug, $page);
     }
 } 

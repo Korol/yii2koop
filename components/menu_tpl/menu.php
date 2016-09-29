@@ -1,8 +1,6 @@
 <?php
 $hasChilds = false;
-//$catLink = \yii\helpers\Url::to(['shop/category/' .$category['id'] . '/' . $category['url']]);
-//$catLink = \yii\helpers\Url::to(['shop/category', 'id' => $category['id']]);// , 'url' => $category['url']
-$catLink = \yii\helpers\Url::to(['shop/category', ['id' => $category['id'], 'url' => $category['url']]]);
+$catLink = \yii\helpers\Url::to(['shop/category', 'id' => $category['id'], 'slug' => $category['url']]);
 if(isset($category['childs'])){
     $hasChilds = true;
     $catLink = '#';
