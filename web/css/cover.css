@@ -1,0 +1,314 @@
+/*
+ * Globals
+ */
+
+/*************************
+*******Typography******
+**************************/
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
+@import url(http://fonts.googleapis.com/css?family=Abel);
+
+/* Links */
+a,
+a:focus,
+a:hover {
+    color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+    color: #333;
+    text-shadow: none; /* Prevent inheritance from `body` */
+    background-color: #fff;
+    border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+    height: 100%;
+    /*background-color: #333;*/
+}
+body {
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.5);
+    /*background-image: url(../images/home/main_page_bg3.jpg);*/
+    background-image: url(../images/home/main_page_bg2.jpg);
+    /*background-image: url(../images/home/main_page_bg1.jpg);*/
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgb(30, 154, 240);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+    display: table;
+    width: 100%;
+    height: 100%; /* For at least Firefox */
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+    display: table-cell;
+    vertical-align: top;
+}
+.cover-container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+    padding: 10px 30px 30px;
+    /*padding: 30px;*/
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+    display: inline-block;
+}
+.masthead-nav > li + li {
+    margin-left: 20px;
+}
+.masthead-nav > li > a {
+    padding-right: 0;
+    padding-left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff; /* IE8 proofing */
+    color: rgba(255,255,255,.75);
+    border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+    background-color: transparent;
+    border-bottom-color: #a9a9a9;
+    border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+    .masthead-brand {
+        float: left;
+    }
+    .masthead-nav {
+        float: right;
+    }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+    padding: 0 20px;
+}
+.cover .btn-lg {
+    padding: 10px 20px;
+    font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+    color: #999; /* IE8 proofing */
+    color: rgba(255,255,255,.5);
+}
+
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+    /* Pull out the header and footer */
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+    .mastfoot {
+        position: fixed;
+        bottom: 0;
+    }
+    /* Start the vertical centering */
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+    /* Handle the widths */
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%;
+        /*width: 700px;*/
+    }
+}
+
+.mainpage .nav > li {
+    display: inline-block;
+}
+.mainpage .nav-pills > li > a:hover,
+.mainpage .navbar-nav > li > a:hover {
+    background: none;
+    color: #000;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+.mainpage .nav-pills > li > a:focus,
+.mainpage .navbar-nav > li > a:focus,
+.mainpage .nav-pills > li > a:active,
+.mainpage .navbar-nav > li > a:active {
+    background: none;
+    color: #000;
+}
+.mainpage .my-service-menu a,
+.mainpage .social-icons a {
+    padding-top: 10px;
+}
+.mainpage .social-icons ul li a i:hover{
+    color: #000;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}
+.mainpage .fa-facebook,
+.mainpage .fa-twitter,
+.mainpage .fa-linkedin,
+.mainpage .fa-dribbble,
+.mainpage .fa-google-plus {
+    font-size: 18px;
+}
+.mainpage .main-logo {
+    width: 70px;
+    height: auto;
+}
+.mainpage .main-logo-title {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    text-transform: uppercase;
+    line-height: 1.7;
+    margin-top: 0px;
+    color: #328d02;
+    /*color: #fff;*/
+    text-align: left;
+}
+.mainpage .mainmenu {
+    margin-top: 20px;
+}
+.mainpage .my-main-menu {
+    float: none !important;
+}
+.mainpage .my-main-menu li {
+    display: inline-block;
+    float: none;
+}
+
+.mainpage .mainmenu ul li{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.mainpage .mainmenu ul li:first-child{
+    padding-left: 0px;
+}
+
+.mainpage .mainmenu ul li a {
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+    padding: 0 0 10px;
+}
+
+.mainpage .mainmenu ul li a:hover, .mainmenu ul li a.active, .shop-menu ul li a.active{
+    background:none;
+    color: #000;
+    /*color:#fdb45e;*/
+    /*text-decoration: underline;*/
+}
+
+.mainpage .search_box input {
+    /*background: #F0F0E9;*/
+    background-color: rgb(230, 247, 253);
+    border: medium none;
+    color: #444;
+    /*color: #B2B2B2;*/
+    font-family: 'roboto';
+    font-size: 12px;
+    font-weight: 300;
+    height: 35px;
+    outline: medium none;
+    padding-left: 10px;
+    width: 155px;
+    background-image: url(../images/home/searchicon.png);
+    background-repeat: no-repeat;
+    background-position: 130px;
+}
+.mainpage .search_box {
+    margin-top: 10px;
+}
+.mainpage .navbar-toggle {
+    background-color: #fff;
+    box-shadow: 2px 2px 1px rgba(0,0,0,.5);
+}
+.mainpage .navbar-toggle > .icon-bar {
+    background-color: #333;
+}
+p.cover-slogan {
+    font-size: 5vw;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+.footer-copy-text {
+    text-align: center;
+    color: #fff;
+}
+.footer-copy-text:hover {
+    color: #000;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+}

@@ -9,8 +9,8 @@
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
 body {
-  font-family: 'Roboto', sans-serif;
-  /*background:;*/
+    font-family: 'Roboto', sans-serif;
+    /*background:;*/
   position: relative;
   font-weight:400px;
 }
@@ -1015,7 +1015,8 @@ h2.title {
 }
 
 .add-to-cart:hover {
-  background: #FE980F;
+  background: #328d02;
+  /*background: #FE980F;*/
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
@@ -1030,11 +1031,13 @@ h2.title {
 }
 
 .add-to-cart:hover {
-  background: #FE980F;
+  background: #328d02;
+  /*background: #FE980F;*/
   color: #FFFFFF;
 }
 
 .choose {
+    display: none;
   border-top: 1px solid #F7F7F0;
 }
 
@@ -2603,4 +2606,101 @@ h2.title {
 }
 .footer-copy-text {
     text-align: center;
+}
+
+/* sale box original */
+/*.sale-box, .sale-box1 {*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*overflow: hidden;*/
+    /*height: 92px;*/
+    /*width: 92px;*/
+    /*text-align: center;*/
+    /*z-index: 0;*/
+    /*right: 0;*/
+/*}*/
+/*.sale-box span.on_sale, .sale-box1 span.on_sale1 {*/
+    /*font-size: 0.85em;*/
+    /*color: #fff;*/
+    /*background: #e24602;*/
+    /*text-transform: uppercase;*/
+    /*padding: 4px 0;*/
+    /*width: 130px;*/
+    /*text-align: center;*/
+    /*display: block;*/
+    /*position: absolute;*/
+    /*right: -33px;*/
+    /*top: 14px;*/
+    /*z-index: 1;*/
+    /*-moz-transition: all 0.5s ease;*/
+    /*-webkit-transition: all 0.5s ease;*/
+    /*transition: all 0.5s ease;*/
+    /*-webkit-transform: rotate(45deg);*/
+    /*-ms-transform: rotate(45deg);*/
+    /*transform: rotate(45deg);*/
+    /*font-family: 'Roboto', sans-serif;*/
+/*}*/
+
+/* sale box sale */
+.sale-box {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    height: 110px;
+    width: 110px;
+    text-align: center;
+    z-index: 0;
+    right: 15px;
+}
+.sale-box span.on_sale {
+    font-size: 0.85em;
+    color: #fff;
+    /*background: #328d02;*/
+    text-transform: uppercase;
+    padding: 4px 0;
+    width: 136px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    right: -33px;
+    top: 25px;
+    z-index: 1;
+    -moz-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    font-family: 'Roboto', sans-serif;
+}
+.sale-box-sale {
+    background: #328d02;
+}
+.sale-box-hit {
+    background: #FE980F;
+}
+.sale-box-new {
+    background: #e24602;
+}
+.hit-products-tab > a:hover, .hit-products-tab.active > a {
+    background: #FE980F !important;
+}
+.new-products-tab > a:hover, .new-products-tab.active > a {
+    background: #e24602 !important;
+}
+.sale-products-tab > a:hover, .sale-products-tab.active > a {
+    background: #328d02 !important;
+}
+.category-tab .nav-justified > li > a {
+    border: none;
+    border-radius: 0;
+}
+.category-tab .nav-justified > .active > a,
+.category-tab .nav-justified > .active > a:hover,
+.category-tab .nav-justified > .active > a:focus,
+.category-tab .nav-justified > .active > a:active {
+    border: none;
+}
+.mainmenu > ul > li >a.active {
+    color: #328d02;
 }
