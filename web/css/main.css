@@ -945,7 +945,7 @@ h2.title {
 }
 
 .productinfo img{
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .productinfo{
@@ -2703,4 +2703,48 @@ h2.title {
 }
 .mainmenu > ul > li >a.active {
     color: #328d02;
+}
+
+/* category products info */
+.category-img-container {
+    width: 100%;
+    height: 255px;
+    line-height: 260px;
+}
+.category-img-container img {
+    max-width: 100%;
+    max-height: 255px;
+    vertical-align: middle;
+}
+.tab-img-container {
+    width: 100%;
+    height: 215px;
+    line-height: 220px;
+}
+.tab-img-container img {
+    max-width: 100%;
+    max-height: 215px;
+    vertical-align: middle;
+}
+.productinfo p {
+    height: 40px;
+    overflow: hidden;
+}
+.np-tab-price {
+    color: #e24602 !important;
+}
+.hp-tab-price {
+    color: #FE980F !important;
+}
+.sp-tab-price {
+    color: #328d02 !important;
+}
+.atc-new:hover {
+    background-color: #e24602 !important;
+}
+.atc-hit:hover {
+    background-color: #FE980F !important;
+}
+.atc-sale:hover {
+    background-color: #328d02 !important;
 }

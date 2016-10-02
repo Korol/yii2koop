@@ -46,7 +46,7 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
+    <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
