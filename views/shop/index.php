@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 /* @var $this yii\web\View */
 
-$this->title = 'Магазин – Народная Кооперация';
 $this->params['active_menu_item'] = 'shop';
 $product_images_path = '/images/shop/products/';
 ?>
@@ -27,34 +27,6 @@ $product_images_path = '/images/shop/products/';
                 <?= \app\components\MenuWidget::widget(['tpl' => 'menu']); ?>
             </ul>
         </div>
-
-        <?php /*div class="brands_products"><!--brands_products-->
-            <h2>Производители</h2>
-            <div class="brands-name">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"> <span class="pull-right">(50)</span>Acne</a></li>
-                    <li><a href="#"> <span class="pull-right">(56)</span>Grüne Erde</a></li>
-                    <li><a href="#"> <span class="pull-right">(27)</span>Albiro</a></li>
-                    <li><a href="#"> <span class="pull-right">(32)</span>Ronhill</a></li>
-                    <li><a href="#"> <span class="pull-right">(5)</span>Oddmolly</a></li>
-                    <li><a href="#"> <span class="pull-right">(9)</span>Boudestijn</a></li>
-                    <li><a href="#"> <span class="pull-right">(4)</span>Rösch creative culture</a></li>
-                </ul>
-            </div>
-        </div><!--/brands_products-->
-
-        <div class="price-range"><!--price-range-->
-            <h2>Price Range</h2>
-            <div class="well text-center">
-                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-                <b class="pull-left">$ 0</b> <b class="pull-right">$ 600</b>
-            </div>
-        </div><!--/price-range-->
-
-        <div class="shipping text-center"><!--shipping-->
-            <img src="/images/home/shipping.jpg" alt="" />
-        </div><!--/shipping--*/?>
-
     </div>
 </div>
 
@@ -68,10 +40,16 @@ $product_images_path = '/images/shop/products/';
             <div class="single-products">
                 <div class="productinfo text-center">
                     <div class="category-img-container">
-                    <?= Html::img('@web' . $product_images_path . $item->img, ['alt' => Html::encode($item->title)]); ?>
+                        <a href="<?=Url::to(['shop/product', 'id' => $item->id, 'slug' => $item->url]); ?>" title="<?=Html::encode($item->title); ?>">
+                            <?= Html::img('@web' . $product_images_path . $item->img, ['alt' => Html::encode($item->title)]); ?>
+                        </a>
                     </div>
                     <h2><?= $item->price; ?> грн/<?= $item->units; ?></h2>
-                    <p><?= Html::encode($item->title); ?></p>
+                    <p>
+                        <a href="<?=Url::to(['shop/product', 'id' => $item->id, 'slug' => $item->url]); ?>" class="product-title-link">
+                            <?= Html::encode($item->title); ?>
+                        </a>
+                    </p>
                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Купить</a>
                 </div>
             </div>
@@ -119,10 +97,16 @@ $product_images_path = '/images/shop/products/';
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <div class="tab-img-container">
-                            <?= Html::img('@web' . $product_images_path . $new_product->img, ['alt' => Html::encode($new_product->title)]); ?>
+                                <a href="<?=Url::to(['shop/product', 'id' => $new_product->id, 'slug' => $new_product->url]); ?>" title="<?=Html::encode($new_product->title); ?>">
+                                    <?= Html::img('@web' . $product_images_path . $new_product->img, ['alt' => Html::encode($new_product->title)]); ?>
+                                </a>
                             </div>
                             <h2 class="np-tab-price"><?= $new_product->price; ?> грн/<?= $new_product->units; ?></h2>
-                            <p><?= Html::encode($new_product->title); ?></p>
+                            <p>
+                                <a href="<?=Url::to(['shop/product', 'id' => $new_product->id, 'slug' => $new_product->url]); ?>" class="product-title-link">
+                                    <?= Html::encode($new_product->title); ?>
+                                </a>
+                            </p>
                             <a href="#" class="btn btn-default add-to-cart atc-new"><i class="fa fa-shopping-cart"></i>Купить</a>
                         </div>
                     </div>
@@ -139,10 +123,16 @@ $product_images_path = '/images/shop/products/';
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <div class="tab-img-container">
-                            <?= Html::img('@web' . $product_images_path . $hit_product->img, ['alt' => Html::encode($hit_product->title)]); ?>
+                                <a href="<?=Url::to(['shop/product', 'id' => $hit_product->id, 'slug' => $hit_product->url]); ?>" title="<?=Html::encode($hit_product->title); ?>">
+                                    <?= Html::img('@web' . $product_images_path . $hit_product->img, ['alt' => Html::encode($hit_product->title)]); ?>
+                                </a>
                             </div>
                             <h2 class="hp-tab-price"><?= $hit_product->price; ?> грн/<?= $hit_product->units; ?></h2>
-                            <p><?= Html::encode($hit_product->title); ?></p>
+                            <p>
+                                <a href="<?=Url::to(['shop/product', 'id' => $hit_product->id, 'slug' => $hit_product->url]); ?>" class="product-title-link">
+                                    <?= Html::encode($hit_product->title); ?>
+                                </a>
+                            </p>
                             <a href="#" class="btn btn-default add-to-cart atc-hit"><i class="fa fa-shopping-cart"></i>Купить</a>
                         </div>
                     </div>
@@ -159,10 +149,16 @@ $product_images_path = '/images/shop/products/';
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <div class="tab-img-container">
-                            <?= Html::img('@web' . $product_images_path . $sale_product->img, ['alt' => Html::encode($sale_product->title)]); ?>
+                                <a href="<?=Url::to(['shop/product', 'id' => $sale_product->id, 'slug' => $sale_product->url]); ?>" title="<?=Html::encode($sale_product->title); ?>">
+                                    <?= Html::img('@web' . $product_images_path . $sale_product->img, ['alt' => Html::encode($sale_product->title)]); ?>
+                                </a>
                             </div>
                             <h2 class="sp-tab-price"><?= $sale_product->price; ?> грн/<?= $sale_product->units; ?></h2>
-                            <p><?= Html::encode($sale_product->title); ?></p>
+                            <p>
+                                <a href="<?=Url::to(['shop/product', 'id' => $sale_product->id, 'slug' => $sale_product->url]); ?>" class="product-title-link">
+                                <?= Html::encode($sale_product->title); ?>
+                                </a>
+                            </p>
                             <a href="#" class="btn btn-default add-to-cart atc-sale"><i class="fa fa-shopping-cart"></i>Купить</a>
                         </div>
                     </div>
@@ -193,10 +189,16 @@ $product_images_path = '/images/shop/products/';
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <div class="category-img-container">
-                                    <?= Html::img('@web' . $product_images_path . $r_chunk->img, ['alt' => Html::encode($r_chunk->title)]); ?>
+                                    <a href="<?=Url::to(['shop/product', 'id' => $r_chunk->id, 'slug' => $r_chunk->url]); ?>" title="<?=Html::encode($r_chunk->title); ?>">
+                                        <?= Html::img('@web' . $product_images_path . $r_chunk->img, ['alt' => Html::encode($r_chunk->title)]); ?>
+                                    </a>
                                 </div>
                                 <h2><?= $r_chunk->price; ?> грн/<?= $r_chunk->units; ?></h2>
-                                <p><?= Html::encode($r_chunk->title); ?></p>
+                                <p>
+                                    <a href="<?=Url::to(['shop/product', 'id' => $r_chunk->id, 'slug' => $r_chunk->url]); ?>" class="product-title-link">
+                                    <?= Html::encode($r_chunk->title); ?>
+                                    </a>
+                                </p>
                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Купить</a>
                             </div>
                         </div>

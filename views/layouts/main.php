@@ -48,7 +48,6 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
 <head>
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
     <meta name="author" content="">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
@@ -56,11 +55,11 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
 //    $this->registerJsFile('js/html5shiv.js', ['position' => \yii\web\View::POS_HEAD, 'condition' => 'lt IE 9']);
 //    $this->registerJsFile('js/respond.min.js', ['position' => \yii\web\View::POS_HEAD, 'condition' => 'lt IE 9']);
     ?>
-    <link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
-    <link rel="manifest" href="images/favicons/manifest.json">
-    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/images/favicons/manifest.json">
+    <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
     <?php $this->head() ?>
 </head><!--/head-->
@@ -108,8 +107,9 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
             <div class="row">
                 <div class="col-sm-3">
                     <div class="logo pull-left">
-                        <a href="<?= Url::home(); ?>">
-                            <img class="main-logo" src="/images/home/logo_100x100.png" alt="<?=$this->title; ?>" align="left" />
+                        <a href="<?= Url::home(); ?>" title="На главную страницу">
+                            <?= Html::img('@web/images/home/logo_100x100.png', ['alt' => Html::encode($this->title), 'align' => 'left', 'class' => 'main-logo']); ?>
+<!--                            <img class="main-logo" src="/images/home/logo_100x100.png" alt="--><?//=$this->title; ?><!--" align="left" />-->
                             <p class="main-logo-title pull-right">Народная<br/>кооперация</p>
                         </a>
                     </div>
@@ -158,30 +158,14 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                             <?php
                             }
                             ?>
-                            <?php /*li><a href="index.html" class="active">Главная</a></li>
-                            <li class="dropdown"><a href="#">Магазин<i class="fa fa-angle-down"></i></a>
-                                <ul role="menu" class="sub-menu">
-                                    <li><a href="shop.html">Products</a></li>
-                                    <li><a href="product-details.html">Product Details</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Новости<i class="fa fa-angle-down"></i></a>
-                            <ul role="menu" class="sub-menu">
-                                    <li><a href="blog.html">Blog List</a></li>
-                                    <li><a href="blog-single.html">Blog Single</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">404</a></li>
-                            <li><a href="#">Контакты</a></li*/?>
                         </ul>
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 inner-pages">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Поиск"/>
+                        <form action="<?=Url::to(['shop/search']); ?>" method="get">
+                            <input type="text" name="search" placeholder="Поиск" maxlength="50"/>
+                        </form>
                     </div>
                 </div>
             </div>

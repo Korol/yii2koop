@@ -237,7 +237,7 @@ a#scrollUp i{
 }
 
 .mainmenu {
-    margin-top: 10px;
+    margin-top: 25px;
     text-align: center;
 }
 
@@ -288,6 +288,9 @@ a#scrollUp i{
   background-image: url(../images/home/searchicon.png);
   background-repeat: no-repeat;
   background-position: 130px;
+}
+.inner-pages>.search_box {
+    margin-top: 17px;
 }
 
 
@@ -1183,8 +1186,10 @@ h2.title {
 }
 
 .pagination  .active  a, .pagination  .active  span, .pagination  .active  a:hover, .pagination  .active  span:hover, .pagination  .active  a:focus, .pagination  .active  span:focus {
-  background-color: #FE980F;
-  border-color: #FE980F;
+  /*background-color: #FE980F;*/
+  /*border-color: #FE980F;  */
+  background-color: #328d02;
+  border-color: #328d02;
   color: #FFFFFF;
   cursor: default;
   z-index: 2;
@@ -1204,7 +1209,8 @@ h2.title {
 }
 
 .pagination  li  a:hover{
-	background:#FE980F;
+	/*background:#FE980F;*/
+	background: #328d02;
 	color:#fff;
 }
 
@@ -1241,11 +1247,11 @@ h2.title {
   position: relative;
 }
 
-.view-product img {
-  border: 1px solid #F7F7F0;
-  height: 380px;
-  width: 100%;
-}
+/*.view-product img {*/
+  /*border: 1px solid #F7F7F0;*/
+  /*height: 380px;*/
+  /*width: 100%;*/
+/*}*/
 
 .view-product h3 {
   background: #FE980F;
@@ -1274,7 +1280,8 @@ h2.title {
   top: 35%;
 }
 .item-control i {
-  background: #FE980F;
+  /*background: #FE980F;*/
+  background: #328d02;
   color: #FFFFFF;
   font-size: 20px;
   padding: 5px 10px;
@@ -1288,8 +1295,10 @@ h2.title {
   border: 1px solid #F7F7F0;
   overflow: hidden;
   padding-bottom: 60px;
-  padding-left: 60px;
-  padding-top: 60px;
+  padding-left: 20px;
+  /*padding-top: 60px;*/
+    padding-top: 20px;
+  margin-top: 0px;
   position: relative;
 }
 
@@ -1327,7 +1336,8 @@ h2.title {
   margin-right: 20px;
   margin-top: 0px;
 }
-.product-information span input {
+/*.product-information span input {*/
+.product-information input {
   border: 1px solid #DEDEDC;
   color: #696763;
   font-family: 'Roboto', sans-serif;
@@ -1339,11 +1349,13 @@ h2.title {
   width: 50px;
 }
 
-.product-information span label {
+/*.product-information span label {*/
+.product-information label {
   color: #696763;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   margin-right: 5px;
+    font-size: 17px;
 }
 
 .share {
@@ -1352,7 +1364,8 @@ h2.title {
 
 
 .cart {
-  background: #FE980F;
+  /*background: #FE980F;*/
+  background: #328d02;
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
@@ -2747,4 +2760,96 @@ h2.title {
 }
 .atc-sale:hover {
     background-color: #328d02 !important;
+}
+
+/* Shop Categories */
+.shop-category {
+    margin-top: 45px;
+    margin-bottom: 45px;
+}
+.category-no-products {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.product-title-link,
+.product-title-link:active,
+.product-title-link:focus,
+.product-title-link:hover {
+    color: #696763;
+}
+.product-title-link:hover {
+    text-decoration: underline;
+}
+
+/* Product Details */
+.product-info-block {
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+.product-details-photos {
+    margin-top: 0px;
+}
+.product-details-price {
+    font-size: 30px;
+    font-weight: bold;
+}
+.product-description {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 20px;
+    border: 1px solid #F7F7F0;
+    overflow: hidden;
+}
+span.product-details-option {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.pdo-link,
+.pdo-link:active,
+.pdo-link:focus,
+.pdo-link:hover {
+    color: #696763;
+}
+.pdo-link:hover {
+    text-decoration: underline;
+}
+.view-product {
+    width: 100%;
+    height: 380px;
+    text-align: center;
+    border: 1px solid #F7F7F0;
+}
+img.pd-main-img {
+    max-width: 100%;
+    max-height: 378px;
+    vertical-align: middle;
+}
+.pd-recommended {
+    margin-top: 50px;
+}
+
+
+
+/* Media Queries */
+@media (max-width: 480px){
+    .mainmenu ul li {
+        background: none;
+    }
+    .product-information {
+        padding-left: 5px;
+        padding-right: 5px;
+        text-align: left;
+    }
+    .product-description {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+@media (max-width: 767px){
+    .mainmenu ul li {
+        background: none;
+    }
 }

@@ -47,10 +47,15 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 // магазин
+                // категория
                 'shop/category/<id:\d+>/<slug:[-\w]+>/<page:\d+>' => 'shop/category', // правила задавать именно в такой последовательности!!!
                 'shop/category/<id:\d+>/<slug:[-\w]+>' => 'shop/category', // от более длинного URL - к более короткому!
                 'shop/category/<id:\d+>' => 'shop/category',
                 'shop' => 'shop/index',
+                // товар
+                'shop/product/<id:\d+>/<slug:[-\w]+>' => 'shop/product',
+                // поиск
+                'shop/search' => 'shop/search',
                 // новости
                 'news/article/<id:\d+>/<slug:[-\w]+>' => 'news/article',
                 'news/<page:\d+>' => 'news/index',
