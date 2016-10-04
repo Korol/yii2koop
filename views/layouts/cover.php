@@ -26,17 +26,33 @@ $top_menu = [
         'title' => 'Магазин',
         'url' => Url::to(['shop/index']),
     ],
+    'payment' => [
+        'title' => 'Оплата',
+        'url' => Url::to(['site/static', 'alias' => 'payment']),
+    ],
+    'delivery' => [
+        'title' => 'Доставка',
+        'url' => Url::to(['site/static', 'alias' => 'delivery']),
+    ],
+    'guarantees' => [
+        'title' => 'Гарантии',
+        'url' => Url::to(['site/static', 'alias' => 'guarantees']),
+    ],
     'news' => [
         'title' => 'Новости',
         'url' => Url::to(['news/index']),
     ],
-    'article' => [
-        'title' => 'Статья',
-        'url' => Url::to(['news/article', 'id' => 23, 'slug' => 'testovaya-statjya']),
+    'blog' => [
+        'title' => 'Блог',
+        'url' => Url::to(['blog/index']),
+    ],
+    'partners' => [
+        'title' => 'Партнеры',
+        'url' => Url::to(['site/static', 'alias' => 'partners']),
     ],
     'about' => [
         'title' => 'О нас',
-        'url' => Url::to(['site/about']),
+        'url' => Url::to(['site/static', 'alias' => 'about']),
     ],
     'contact' => [
         'title' => 'Контакты',
@@ -77,7 +93,7 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                 <div class="container mainpage">
                     <div class="inner">
 
-                        <div class="row">
+                        <div class="row top-header-menu">
                             <div class="col-sm-4">
                                 <div class="contactinfo">
                                     <ul class="nav nav-pills">
@@ -86,22 +102,31 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="shop-menu center-block">
-                                    <ul class="nav navbar-nav my-service-menu">
-                                        <li><a href="#"><i class="fa fa-user"></i> Личный Кабинет</a></li>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Корзина</a></li>
-                                        <li><a href="login.html"><i class="fa fa-lock"></i> Вход</a></li>
-                                    </ul>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="search_box center-block">
+                                    <form action="<?=Url::to(['shop/search']); ?>" method="get">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control top-s-input" aria-label="" name="search" placeholder="Поиск" maxlength="30">
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Поиск по <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="#">Названию</a></li>
+                                                    <li><a href="#">Производителю</a></li>
+                                                    <li><a href="#">Артикулу</a></li>
+                                                </ul>
+                                            </div><!-- /btn-group -->
+                                        </div><!-- /input-group -->
+                                    </form>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
                                 <div class="social-icons pull-right">
                                     <ul class="nav navbar-nav">
                                         <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-odnoklassniki" aria-hidden="true"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-vk"></i></a></li>
                                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
                                 </div>
@@ -142,8 +167,12 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div class="search_box pull-right">
-                                    <input type="text" name="top_search" placeholder="Поиск"/>
+                                <div class="shop-menu pull-right">
+                                    <ul class="nav navbar-nav my-service-menu">
+                                        <li><a href="#"><i class="fa fa-user"></i> Личный Кабинет</a></li>
+                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Корзина (23)</a></li>
+                                        <li><a href="login.html"><i class="fa fa-lock"></i> Вход</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>

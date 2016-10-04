@@ -123,4 +123,9 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    public function actionStatic($alias)
+    {
+        return $this->render('static', compact('alias'));
+    }
 }

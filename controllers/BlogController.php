@@ -9,7 +9,7 @@
 namespace app\controllers;
 
 
-class NewsController extends FrontendController
+class BlogController extends FrontendController
 {
     public function actionIndex($page = 0)
     {

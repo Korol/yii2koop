@@ -74,7 +74,9 @@ a#scrollUp i{
 .header_top {
   background: none repeat scroll 0 0 #F0F0E9;
 }
-
+.contactinfo {
+    margin-top: 5px;
+}
 .contactinfo ul li:first-child{
     margin-left: -15px;
 }
@@ -104,7 +106,8 @@ a#scrollUp i{
 }
 
 .social-icons ul li a i {
-  padding: 11px 15px;
+  /*padding: 11px 14px;*/
+  padding: 18px 18px;
    transition: all 0.9s ease 0s;
   -moz-transition: all 0.9s ease 0s;
   -webkit-transition: all 0.9s ease 0s;
@@ -121,23 +124,19 @@ a#scrollUp i{
 
 
 .fa-facebook:hover {
-  background: #0083C9;
+  background: #3b5998;
 }
 
-.fa-twitter:hover  {
-	background:#5BBCEC;
-}
-
-.fa-linkedin:hover  {
-	background:#FF4518;
-}
-
-.fa-dribbble:hover  {
-	background:#90C9DC;
+.fa-odnoklassniki:hover {
+    background: #ee8208;
 }
 
 .fa-google-plus:hover  {
-	background:#CE3C2D;
+	background:#db4437;
+}
+
+.fa-vk:hover {
+    background: #507299;
 }
 
 .header-middle .container .row {
@@ -183,23 +182,32 @@ a#scrollUp i{
 }
 
 .dropdown-menu  li  a:hover, .dropdown-menu  li  a:focus {
-  background-color: #FE980F;
+  /*background-color: #FE980F;*/
+  background-color: #328d02;
   color: #FFFFFF;
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
 }
 
-
+.shop-menu {
+    margin-top: -15px;
+}
 .shop-menu ul li {
 	display:inline-block;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.shop-menu ul li:last-child {
+.shop-menu ul li {
   padding-right: 0;
+    display: block;
+    width: 100%;
+    text-align: left;
 }
 
+.fa-user, .fa-lock {
+    margin-left: 3px;
+}
 
 .shop-menu ul li a {
   /*background: #FFFFFF;*/
@@ -237,7 +245,7 @@ a#scrollUp i{
 }
 
 .mainmenu {
-    margin-top: 25px;
+    margin-top: 10px;
     text-align: center;
 }
 
@@ -256,7 +264,7 @@ a#scrollUp i{
 }
 
 .mainmenu ul li:first-child{
-  padding-left: 0px;
+  /*padding-left: 0px;*/
 }
 
 .mainmenu ul li a {
@@ -266,18 +274,40 @@ a#scrollUp i{
 	font-weight: 300;
 	padding: 0;
 	padding-bottom: 10px;
+    text-transform: uppercase;
 }
 
-.mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
+.mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active {
 	background:none;
 	/*color:#fdb45e;*/
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+}
+.mainmenu ul li a.active {
+    font-weight: 400;
 }
 
+.search_box {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.top-s-input {
+    border-color: #ccc;
+}
+.top-s-input:focus, .top-s-input:active, .top-s-input.active, .top-s-input:focus:active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    /*background: #999;*/
+    color: #000;
+    border-color: #ccc;
+}
 .search_box input {
-  background: #F0F0E9;
-  border: medium none;
-  color: #B2B2B2;
+  /*background: #F0F0E9;*/
+  background: #fff;
+  /*border: medium none;*/
+  /*color: #B2B2B2;*/
+  color: #333;
   font-family: 'roboto';
   font-size: 12px;
   font-weight: 300;
@@ -285,9 +315,9 @@ a#scrollUp i{
   outline: medium none;
   padding-left: 10px;
   width: 155px;
-  background-image: url(../images/home/searchicon.png);
-  background-repeat: no-repeat;
-  background-position: 130px;
+  /*background-image: url(../images/home/searchicon.png);*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: 130px;*/
 }
 .inner-pages>.search_box {
     margin-top: 17px;

@@ -55,8 +55,13 @@ class ShopController extends FrontendController {
         return $this->render('product', compact('product', 'recommended_products'));
     }
 
-    public function actionSearch($search)
+    public function actionSearch($search, $page = 1)
     {
+        $search = trim($search);
+        $this->setMeta('Результаты поиска');
+        if(empty($search)){
+            return $this->render('search', compact('search'));
+        }
         $query = Product::find()->where(['like', 'title', $search]);
         $pages = new Pagination([
             'totalCount' => $query->count(),
@@ -64,7 +69,6 @@ class ShopController extends FrontendController {
             'pageSizeParam' => false,
             'forcePageParam' => false]);
         $products = $query->orderBy(['id' => SORT_DESC])->offset($pages->offset)->limit($pages->limit)->all();
-        $this->setMeta('Результаты поиска');
         return $this->render('search', compact('products', 'pages', 'search'));
     }
 } 
