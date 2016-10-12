@@ -97,15 +97,15 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                 <div class="col-sm-2"></div>
                 <div class="col-sm-3">
                     <div class="search_box center-block">
-                        <form action="<?=Url::to(['shop/search']); ?>" method="get">
+                        <form action="<?=Url::to(['shop/search']); ?>" method="get" name="top_search">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control top-s-input" aria-label="" name="search" placeholder="Поиск" maxlength="30">
                                 <div class="input-group-btn">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Поиск по <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Названию</a></li>
-                                        <li><a href="#">Производителю</a></li>
-                                        <li><a href="#">Артикулу</a></li>
+                                        <li onclick="document.top_search.submit();"><a href="#">Названию</a></li>
+                                        <li onclick="document.top_search.submit();"><a href="#">Производителю</a></li>
+                                        <li onclick="document.top_search.submit();"><a href="#">Артикулу</a></li>
                                     </ul>
                                 </div><!-- /btn-group -->
                             </div><!-- /input-group -->
@@ -189,9 +189,20 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                 <div class="col-sm-2 inner-pages">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav my-service-menu">
-                            <li><a href="#"><i class="fa fa-user"></i> Личный Кабинет</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Корзина (23)</a></li>
-                            <li><a href="login.html"><i class="fa fa-lock"></i> Вход</a></li>
+                            <li><a href="/private"><i class="fa fa-user"></i>Личный Кабинет</a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i>Корзина (23)</a></li>
+                            <li>
+                            <?php if (Yii::$app->user->isGuest): ?>
+                            <i class="fa fa-lock"></i><a href="/site/login">Вход</a> | <a href="/site/signup">Регистрация</a>
+                            <?php else: ?>
+                                <?= Html::beginForm(['/site/logout'], 'post', ['class' => '']); ?>
+                                <?= Html::submitButton(
+                                    '<i class="fa fa-lock"></i>Выйти (' . Yii::$app->user->identity->username . ')',
+                                    ['class' => 'btn btn-link logout-btn']
+                                ); ?>
+                                <?= Html::endForm(); ?>
+                            <?php endif; ?>
+                            </li>
                         </ul>
                     </div>
                 </div>

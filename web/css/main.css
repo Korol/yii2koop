@@ -208,6 +208,17 @@ a#scrollUp i{
 .fa-user, .fa-lock {
     margin-left: 3px;
 }
+.fa-lock {
+    margin-right: 5px;
+    color: #696763;
+}
+.logout-btn, .logout-btn:hover {
+    color: #696763;
+    padding: 10px 0 0 2px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin-left: -3px;
+}
 
 .shop-menu ul li a {
   /*background: #FFFFFF;*/
@@ -218,11 +229,12 @@ a#scrollUp i{
   padding:0;
   padding-right: 0;
   margin-top: 10px;
+    display: inline-block;
 }
 
 
 .shop-menu ul li a i{
-	margin-right:3px;
+	margin-right: 5px;
 }
 
 
@@ -230,7 +242,7 @@ a#scrollUp i{
   /*color: #328d02;*/
     text-decoration: underline;
 	/*color:#fe980f;*/
-	/*background:#fff;*/
+	background:#fff;
 }
 
 

@@ -185,13 +185,29 @@ body {
     display: inline-block;
 }
 .mainpage .nav-pills > li > a:hover,
-.mainpage .navbar-nav > li > a:hover {
+.mainpage .navbar-nav > li > a:hover
+{
     background: none;
     color: #000;
     transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -webkit-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
+}
+.mainpage .navbar-nav > li button:hover
+{
+    background: none;
+    color: #000;
+    transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    text-decoration: none;
+}
+.navbar-nav > li button {
+    color: #fff;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.5);
+    font-weight: 400;
 }
 .mainpage .nav-pills > li > a:focus,
 .mainpage .navbar-nav > li > a:focus,
@@ -206,6 +222,7 @@ body {
 }
 .mainpage .my-service-menu a {
     padding: 0;
+    display: inline-block;
 }
 .mainpage .social-icons ul li a i:hover{
     color: #000;
@@ -378,4 +395,15 @@ p.cover-slogan {
 }
 .fa-user, .fa-lock, .fa-shopping-cart {
     margin-right: 5px;
+}
+.fa-lock {
+    margin-right: 10px;
+    margin-left: 3px;
+}
+.logout-btn, .logout-btn:hover {
+    color: #696763;
+    padding: 0 0 0 2px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin-left: -3px;
 }

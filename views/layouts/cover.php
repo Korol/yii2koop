@@ -169,9 +169,20 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                             <div class="col-sm-2">
                                 <div class="shop-menu pull-right">
                                     <ul class="nav navbar-nav my-service-menu">
-                                        <li><a href="#"><i class="fa fa-user"></i> Личный Кабинет</a></li>
-                                        <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Корзина (23)</a></li>
-                                        <li><a href="login.html"><i class="fa fa-lock"></i> Вход</a></li>
+                                        <li><a href="/private"><i class="fa fa-user"></i> Личный Кабинет</a></li>
+                                        <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина (23)</a></li>
+                                        <li>
+                                        <?php if (Yii::$app->user->isGuest): ?>
+                                        <i class="fa fa-lock"></i><a href="/site/login">Вход</a> &nbsp;|&nbsp; <a href="/site/signup">Регистрация</a>
+                                        <?php else: ?>
+                                            <?= Html::beginForm(['/site/logout'], 'post', ['class' => '']); ?>
+                                            <?= Html::submitButton(
+                                                '<i class="fa fa-lock"></i>Выйти (' . Yii::$app->user->identity->username . ')',
+                                                ['class' => 'btn btn-link logout-btn']
+                                            ); ?>
+                                            <?= Html::endForm(); ?>
+                                        <?php endif; ?>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>

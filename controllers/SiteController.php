@@ -6,7 +6,8 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\models\Login;
+use app\models\Signup;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -31,7 +32,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+//                    'logout' => ['post'],
                 ],
             ],
         ];
@@ -65,23 +66,52 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
-     *
+     * Signup new user
+     * @return string
+     */
+    public function actionSignup()
+    {
+        $model = new Signup();
+        if ($model->load(Yii::$app->getRequest()->post())) {
+            if ($user = $model->signup()) {
+                return $this->goHome();
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Login
      * @return string
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!Yii::$app->getUser()->isGuest) {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        $model = new Login();
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
+            // redirect after login
+            $role = key(Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()));
+            $redirect_map = [
+                'user' => '/',
+                'manager' => '/admin',
+                'admin' => '/rbac/user',
+            ];
+            if(!empty($role) && in_array($role, array_keys($redirect_map))){
+                return $this->redirect([$redirect_map[$role]]);
+            }
+            else
+                return $this->goBack();
+        } else {
+            return $this->render('login', [
+                'model' => $model,
+            ]);
         }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
     }
 
     /**
