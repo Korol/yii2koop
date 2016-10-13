@@ -50,7 +50,7 @@ ltAppAsset::register($this);
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?=Url::to(['admin']); ?>">
+                <a class="navbar-brand" href="<?=Url::home() . 'shop'; ?>">
                     <img class="admin-top-logo" alt="Административная панель" src="/images/favicons/favicon-32x32.png">
                 </a>
             </div>
