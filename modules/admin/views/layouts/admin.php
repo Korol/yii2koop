@@ -57,9 +57,9 @@ ltAppAsset::register($this);
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <?php
                 $menuItems = [
-                    ['label' => 'Админка', 'url' => ['/admin/default']],
+                    ['label' => 'Категории', 'url' => ['/admin/category']],
                     ['label' => 'Пользователи', 'url' => ['/rbac/user']],
-                    ['label' => 'Личка', 'url' => ['/private']],
+//                    ['label' => 'Личка', 'url' => ['/private/index']],
                     Yii::$app->user->isGuest ? (
                     ['label' => 'Вход', 'url' => ['/site/login']]
                     ) : (
@@ -82,7 +82,17 @@ ltAppAsset::register($this);
             </div>
         </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid admin-content">
+        <?= Breadcrumbs::widget([
+            'homeLink' => false,
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?php if( Yii::$app->session->hasFlash('success') ): ?>
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <?php echo Yii::$app->session->getFlash('success'); ?>
+            </div>
+        <?php endif;?>
         <?= $content; ?>
     </div>
 <!--    <footer id="footer"><!--Footer-->

@@ -34,3 +34,10 @@ body {
 .footer-copy-text {
     text-align: center;
 }
+
+#manager-menu {
+    margin-top: 30px;
+}
+.admin-content {
+    margin-bottom: 50px;
+}

@@ -14,6 +14,7 @@ use Yii;
 class MenuWidget extends Widget {
 
     public $tpl; // template for display this Menu
+    public $model; // model for select list
     public $type = [
         'menu', // frontend Menu, default value
         'select', // backend Menu
@@ -34,16 +35,20 @@ class MenuWidget extends Widget {
     public function run()
     {
         // get cache
-        $cashed_menu = Yii::$app->cache->get('left_menu');
-        if(!empty($cashed_menu)){
-            return $cashed_menu;
+        if($this->tpl == 'menu.php'){
+            $cashed_menu = Yii::$app->cache->get('left_menu');
+            if(!empty($cashed_menu)){
+                return $cashed_menu;
+            }
         }
 
         $this->data = Category::find()->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree();
         $this->menuHtml = $this->getMenuHtml($this->tree);
         // set cache
-        Yii::$app->cache->set('left_menu', $this->menuHtml, 60); // 60 = 1 min
+        if($this->tpl == 'menu.php') {
+            Yii::$app->cache->set('left_menu', $this->menuHtml, 60); // 60 = 1 min
+        }
         return $this->menuHtml;
     }
 
@@ -60,15 +65,15 @@ class MenuWidget extends Widget {
         return $tree;
     }
 
-    protected function getMenuHtml($tree){
+    protected function getMenuHtml($tree, $tab = ''){
         $str = '';
         foreach ($tree as $category) {
-            $str .= $this->catToTemplate($category);
+            $str .= $this->catToTemplate($category, $tab);
         }
         return $str;
     }
 
-    protected function catToTemplate($category){
+    protected function catToTemplate($category, $tab){
         ob_start();
         include __DIR__ . '/menu_tpl/' . $this->tpl;
         return ob_get_clean();
