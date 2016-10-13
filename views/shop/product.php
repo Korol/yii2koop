@@ -65,21 +65,21 @@ $product_category = $product->category;
         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
             <!-- Wrapper for slides -->
-            <div class="carousel-inner">
+            <div class="carousel-inner product-details-photos-slide">
                 <div class="item active">
-                    <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                    <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                    <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/boroshno.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/grechka.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/manka.jpg" alt=""></a>
                 </div>
                 <div class="item">
-                    <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                    <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                    <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/ris.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/saxar.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/sol.jpg" alt=""></a>
                 </div>
                 <div class="item">
-                    <a href=""><img src="/images/product-details/similar1.jpg" alt=""></a>
-                    <a href=""><img src="/images/product-details/similar2.jpg" alt=""></a>
-                    <a href=""><img src="/images/product-details/similar3.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/boroshno.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/grechka.jpg" alt=""></a>
+                    <a href=""><img src="/images/shop/products/manka.jpg" alt=""></a>
                 </div>
 
             </div>

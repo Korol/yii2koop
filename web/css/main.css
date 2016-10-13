@@ -2895,3 +2895,8 @@ img.pd-main-img {
         background: none;
     }
 }
+
+.product-details-photos-slide img {
+    max-height: 100px;
+    max-width: 100px !important;
+}
