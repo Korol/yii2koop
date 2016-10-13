@@ -106,6 +106,7 @@ $config = [
             'news/*',
             'blog/*',
             'debug/*',
+//            'elfinder/*',
 //            'admin/*',
 //            'rbac/*',
             // The actions listed here will be allowed to everyone including guests.
@@ -113,6 +114,29 @@ $config = [
             // But in the earlier stages of your development, you may probably want to
             // add a lot of actions here until you finally completed setting up rbac,
             // otherwise you may not even take a first step.
+        ]
+    ],
+    'controllerMap' => [
+        'elfinder' => [
+            'class' => 'mihaildev\elfinder\PathController',
+//            'access' => ['@'],
+            'access' => ['admin', 'manager'],
+            'root' => [
+                'baseUrl'=>'/web',
+//                'baseUrl'=>'@web',
+//                'basePath'=>'@webroot',
+                'path' => 'upload/global',
+                'name' => 'Global'
+            ],
+//            'watermark' => [
+//                'source'         => __DIR__.'/logo.png', // Path to Water mark image
+//                'marginRight'    => 5,          // Margin right pixel
+//                'marginBottom'   => 5,          // Margin bottom pixel
+//                'quality'        => 95,         // JPEG image save quality
+//                'transparency'   => 70,         // Water mark image transparency ( other than PNG )
+//                'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
+//                'targetMinPixel' => 200         // Target image minimum pixel size
+//            ]
         ]
     ],
     'params' => $params,

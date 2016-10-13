@@ -18,6 +18,7 @@ class MenuWidget extends Widget {
     public $type = [
         'menu', // frontend Menu, default value
         'select', // backend Menu
+        'select_product', // backend Product Menu
     ];
     public $data; // Menu data from DB
     public $tree; // Menu data from DB, sorted by tree structure

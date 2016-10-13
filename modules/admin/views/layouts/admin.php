@@ -57,6 +57,7 @@ ltAppAsset::register($this);
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <?php
                 $menuItems = [
+                    ['label' => 'Товары', 'url' => ['/admin/product']],
                     ['label' => 'Категории', 'url' => ['/admin/category']],
                     ['label' => 'Пользователи', 'url' => ['/rbac/user']],
 //                    ['label' => 'Личка', 'url' => ['/private/index']],
