@@ -116,6 +116,7 @@ $config = [
             'news/*',
             'blog/*',
             'debug/*',
+            'yii2images/*',
 //            'elfinder/*',
 //            'admin/*',
 //            'rbac/*',
