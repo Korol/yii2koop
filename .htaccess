@@ -1,5 +1,5 @@
 # from: https://toster.ru/q/210872
-Options +FollowSymLinks
+#Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
 
