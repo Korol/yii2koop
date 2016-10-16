@@ -13,7 +13,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
 <div class="product-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
@@ -25,8 +25,7 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'units')->textInput(['maxlength' => true]) ?>
 
-    <?php //echo $form->field($model, 'category_id')->textInput() ?>
-    <div class="form-group field-product-category_id has-success">
+    <div class="form-group field-product-category_id">
         <label class="control-label" for="product-category_id">Категория</label>
         <select id="product-category_id" class="form-control" name="Product[category_id]">
             <?= \app\components\MenuWidget::widget(['tpl' => 'select_product', 'model' => $model]); ?>
@@ -48,7 +47,35 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'img')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
+    <?php
+    if(!$model->isNewRecord){
+        $mainImage = $model->getImage();
+        if(!empty($mainImage) && ($mainImage->urlAlias != 'placeHolder')){
+            echo '<div class="thumbnail product-form-thumb" id="pf_' . $mainImage->id . '">';
+            echo Html::img([$mainImage->getUrl('100x100')]);
+            echo '<button type="button" title="Удалить это фото" class="btn btn-danger btn-xs pf-delphoto-btn center-block" onclick="delProductPhoto(' . $model->id . ', ' . $mainImage->id . ');">Удалить</button>';
+            echo '</div> ';
+        }
+    }
+    ?>
+
+    <?= $form->field($model, 'gallery[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
+    <?php
+    if(!$model->isNewRecord){
+        $gallery = $model->getImages();
+        if(!empty($gallery)){
+            foreach($gallery as $image){
+                if(!empty($image->isMain) || ($image->urlAlias == 'placeHolder')) continue;
+                echo '<div class="thumbnail product-form-thumb" id="pf_' . $image->id . '">';
+                echo Html::img([$image->getUrl('100x100')]);
+                echo '<button type="button" title="Удалить это фото" class="btn btn-danger btn-xs pf-delphoto-btn center-block" onclick="delProductPhoto(' . $model->id . ', ' . $image->id . ');">Удалить</button>';
+                echo '</div> ';
+            }
+            echo '<br/>';
+        }
+    }
+    ?>
 
     <?= $form->field($model, 'new')->checkbox(['0', '1']) ?>
 
@@ -84,7 +111,9 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'special_conditions')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'show')->dropDownList(['0' => 'Скрыт', '1' => 'Активен']) ?>
+<!--    --><?//= $form->field($model, 'show')->dropDownList(['0' => 'Скрыт', '1' => 'Активен']) ?>
+    <?php $model->show = $model->isNewRecord ? 1 : $model->show; ?>
+    <?= $form->field($model, 'show')->radioList(['0' => 'Скрыт', '1' => 'Активен']) ?>
 
     <?= $form->field($model, 'qty')->textInput() ?>
 

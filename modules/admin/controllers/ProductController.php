@@ -8,6 +8,7 @@ use app\modules\admin\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -86,6 +87,17 @@ class ProductController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if($model->image){
+                $model->upload();
+            }
+            unset($model->image); // !!!! IMPORTANT !!!!
+            $model->gallery = UploadedFile::getInstances($model, 'gallery');
+            if($model->gallery){
+                $model->uploadGallery();
+            }
+
             Yii::$app->session->setFlash('success', 'Товар ' . $model->title . ' успешно отредактирован!');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -122,5 +134,36 @@ class ProductController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function actionDelphoto()
+    {
+        $return = 0;
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            if(!empty($data['model']) && !empty($data['photo'])){
+                $model = $this->findModel($data['model']); // получили модель
+                $images = $model->getImages(); // получили все фото модели
+                if(!empty($images)){
+                    foreach($images as $k => $image){
+                        if($image->id == $data['photo']){
+                            $model->removeImage($image); // удалили фото
+                            $return = 1;
+                            unset($images[$k]); // удалили этот элемент массива
+                            break;
+                        }
+                    }
+                    // если после удаления элемента массива с удаленным фото
+                    // массив $images не пуст – назначаем главным первое фото в оставшемся массиве
+                    if(!empty($images)){
+                        reset($images); // сброс указателя
+                        $firstImage = current($images); // первый элемент оставшегося массива
+                        $model->setMainImage($firstImage); // назначаем новое главное фото
+                    }
+                }
+            }
+            return $return;
+        }
+        return $return;
     }
 }

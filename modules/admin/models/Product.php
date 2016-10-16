@@ -35,6 +35,18 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    public $image;
+    public $gallery;
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -54,6 +66,8 @@ class Product extends \yii\db\ActiveRecord
             [['content', 'new', 'hit', 'sale', 'popular', 'recommended', 'write_off', 'special_conditions'], 'string'],
             [['added_date', 'provider_date'], 'safe'],
             [['title', 'url', 'units', 'keywords', 'description', 'img', 'sku'], 'string', 'max' => 255],
+            [['image'], 'file', 'extensions' => 'png, jpg, gif, jpeg'],
+            [['gallery'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'maxFiles' => 6],
         ];
     }
 
@@ -84,7 +98,8 @@ class Product extends \yii\db\ActiveRecord
             'content' => 'Описание',
             'keywords' => 'META-Keywords',
             'description' => 'META-Description',
-            'img' => 'Картинка',
+            'image' => 'Главное фото товара',
+            'gallery' => 'Другие фото товара',
             'new' => 'Новинка',
             'hit' => 'Хит',
             'sale' => 'Распродажа',
@@ -100,5 +115,33 @@ class Product extends \yii\db\ActiveRecord
             'show' => 'Статус',
             'qty' => 'Кол-во',
         ];
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $imgPath = 'upload/store/' . $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($imgPath);
+            $this->attachImage($imgPath, true);
+            @unlink($imgPath);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function uploadGallery()
+    {
+        if ($this->validate()) {
+            foreach($this->gallery as $file){
+                $imgPath = 'upload/store/' . $file->baseName . '.' . $file->extension;
+                $file->saveAs($imgPath);
+                $this->attachImage($imgPath);
+                @unlink($imgPath);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

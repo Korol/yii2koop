@@ -35,7 +35,7 @@ class ShopController extends FrontendController {
         $query = Product::find()->where(['category_id' => $id]);
         $pages = new Pagination([
             'totalCount' => $query->count(),
-            'pageSize' => 6,
+            'pageSize' => 15,
             'pageSizeParam' => false,
             'forcePageParam' => false]);
         $products = $query->orderBy(['id' => SORT_DESC])->offset($pages->offset)->limit($pages->limit)->all();
@@ -65,7 +65,7 @@ class ShopController extends FrontendController {
         $query = Product::find()->where(['like', 'title', $search]);
         $pages = new Pagination([
             'totalCount' => $query->count(),
-            'pageSize' => 6,
+            'pageSize' => 15,
             'pageSizeParam' => false,
             'forcePageParam' => false]);
         $products = $query->orderBy(['id' => SORT_DESC])->offset($pages->offset)->limit($pages->limit)->all();

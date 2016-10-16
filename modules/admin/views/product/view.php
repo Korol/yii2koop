@@ -24,7 +24,17 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
+    <?php $image = $model->getImage(); ?>
+    <?php
+    $gallery_value = '';
+    $gallery = $model->getImages();
+    if(!empty($gallery)){
+        foreach($gallery as $gallery_image){
+            if(!empty($gallery_image->isMain)) continue;
+            $gallery_value .= '<img src="' . $gallery_image->getUrl('100x100') . '"/>&nbsp;';
+        }
+    }
+    ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -34,7 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'price',
             'price_special',
             'units',
-//            'category_id',
             [
                 'attribute' => 'category_id',
                 'value' => $model->getCategoryTitle(),
@@ -42,28 +51,32 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:html',
             'keywords',
             'description',
-            'img',
-//            'new',
+            [
+                'attribute' => 'image',
+                'value' => '<img src="' . $image->getUrl('100x100') . '"/>',
+                'format' => 'html',
+            ],
+            [
+                'attribute' => 'gallery',
+                'value' => $gallery_value,
+                'format' => 'html',
+            ],
             [
                 'attribute' => 'new',
                 'value' => $model->new ? 'Да' : 'Нет',
             ],
-//            'hit',
             [
                 'attribute' => 'hit',
                 'value' => $model->hit ? 'Да' : 'Нет',
             ],
-//            'sale',
             [
                 'attribute' => 'sale',
                 'value' => $model->sale ? 'Да' : 'Нет',
             ],
-//            'popular',
             [
                 'attribute' => 'popular',
                 'value' => $model->popular ? 'Да' : 'Нет',
             ],
-//            'recommended',
             [
                 'attribute' => 'recommended',
                 'value' => $model->recommended ? 'Да' : 'Нет',
@@ -75,7 +88,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'provider_date',
             'write_off',
             'special_conditions:ntext',
-//            'show',
             [
                 'attribute' => 'show',
                 'value' => $model->show ? 'Активен' : 'Скрыт',

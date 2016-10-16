@@ -44,6 +44,7 @@ $products_marks = [
                                     break;
                                 }
                             }
+                            $item_img = $item->getImage();
                             ?>
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
@@ -51,7 +52,7 @@ $products_marks = [
                                         <div class="productinfo text-center">
                                             <div class="category-img-container">
                                                 <a href="<?=Url::to(['shop/product', 'id' => $item->id, 'slug' => $item->url]); ?>" title="<?=Html::encode($item->title); ?>">
-                                                    <?= Html::img('@web' . $product_images_path . $item->img, ['alt' => Html::encode($item->title)]); ?>
+                                                    <?= Html::img($item_img->getUrl('x255'), ['alt' => Html::encode($item->title)]); ?>
                                                 </a>
                                             </div>
                                             <h2><?= $item->price; ?> грн/<?= $item->units; ?></h2>

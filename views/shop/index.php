@@ -35,13 +35,14 @@ $product_images_path = '/images/shop/products/';
 <div class="features_items"><!--features_items-->
     <h2 class="title text-center">Популярные товары</h2>
     <?php foreach($popular_products as $item): ?>
+        <?php $pp_item_img = $item->getImage(); ?>
     <div class="col-sm-4">
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
                     <div class="category-img-container">
                         <a href="<?=Url::to(['shop/product', 'id' => $item->id, 'slug' => $item->url]); ?>" title="<?=Html::encode($item->title); ?>">
-                            <?= Html::img('@web' . $product_images_path . $item->img, ['alt' => Html::encode($item->title)]); ?>
+                            <?= Html::img($pp_item_img->getUrl('x255'), ['alt' => Html::encode($item->title)]); ?>
                         </a>
                     </div>
                     <h2><?= $item->price; ?> грн/<?= $item->units; ?></h2>
@@ -92,13 +93,14 @@ $product_images_path = '/images/shop/products/';
         <?php if(!empty($new_products)): ?>
         <div class="tab-pane fade active in" id="new_products" >
             <?php foreach($new_products as $new_product): ?>
+                <?php $np_item_img = $new_product->getImage(); ?>
             <div class="col-sm-3">
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <div class="tab-img-container">
                                 <a href="<?=Url::to(['shop/product', 'id' => $new_product->id, 'slug' => $new_product->url]); ?>" title="<?=Html::encode($new_product->title); ?>">
-                                    <?= Html::img('@web' . $product_images_path . $new_product->img, ['alt' => Html::encode($new_product->title)]); ?>
+                                    <?= Html::img($np_item_img->getUrl('x215'), ['alt' => Html::encode($new_product->title)]); ?>
                                 </a>
                             </div>
                             <h2 class="np-tab-price"><?= $new_product->price; ?> грн/<?= $new_product->units; ?></h2>
@@ -118,13 +120,14 @@ $product_images_path = '/images/shop/products/';
         <?php if(!empty($hit_products)): ?>
         <div class="tab-pane fade" id="hit_products" >
             <?php foreach($hit_products as $hit_product): ?>
+                <?php $hp_item_img = $hit_product->getImage(); ?>
             <div class="col-sm-3">
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <div class="tab-img-container">
                                 <a href="<?=Url::to(['shop/product', 'id' => $hit_product->id, 'slug' => $hit_product->url]); ?>" title="<?=Html::encode($hit_product->title); ?>">
-                                    <?= Html::img('@web' . $product_images_path . $hit_product->img, ['alt' => Html::encode($hit_product->title)]); ?>
+                                    <?= Html::img($hp_item_img->getUrl('x215'), ['alt' => Html::encode($hit_product->title)]); ?>
                                 </a>
                             </div>
                             <h2 class="hp-tab-price"><?= $hit_product->price; ?> грн/<?= $hit_product->units; ?></h2>
@@ -144,13 +147,14 @@ $product_images_path = '/images/shop/products/';
         <?php if(!empty($sale_products)): ?>
         <div class="tab-pane fade" id="sale_products" >
             <?php foreach($sale_products as $sale_product): ?>
+                <?php $sp_item_img = $sale_product->getImage(); ?>
             <div class="col-sm-3">
                 <div class="product-image-wrapper">
                     <div class="single-products">
                         <div class="productinfo text-center">
                             <div class="tab-img-container">
                                 <a href="<?=Url::to(['shop/product', 'id' => $sale_product->id, 'slug' => $sale_product->url]); ?>" title="<?=Html::encode($sale_product->title); ?>">
-                                    <?= Html::img('@web' . $product_images_path . $sale_product->img, ['alt' => Html::encode($sale_product->title)]); ?>
+                                    <?= Html::img($sp_item_img->getUrl('x215'), ['alt' => Html::encode($sale_product->title)]); ?>
                                 </a>
                             </div>
                             <h2 class="sp-tab-price"><?= $sale_product->price; ?> грн/<?= $sale_product->units; ?></h2>
@@ -184,13 +188,14 @@ $product_images_path = '/images/shop/products/';
             ?>
             <div class="item <?= $recommended_item_class; ?>">
                 <?php foreach($recommended_chunk as $r_chunk): ?>
+                    <?php $rc_item_img = $r_chunk->getImage(); ?>
                 <div class="col-sm-4">
                     <div class="product-image-wrapper">
                         <div class="single-products">
                             <div class="productinfo text-center">
                                 <div class="category-img-container">
                                     <a href="<?=Url::to(['shop/product', 'id' => $r_chunk->id, 'slug' => $r_chunk->url]); ?>" title="<?=Html::encode($r_chunk->title); ?>">
-                                        <?= Html::img('@web' . $product_images_path . $r_chunk->img, ['alt' => Html::encode($r_chunk->title)]); ?>
+                                        <?= Html::img($rc_item_img->getUrl('x255'), ['alt' => Html::encode($r_chunk->title)]); ?>
                                     </a>
                                 </div>
                                 <h2><?= $r_chunk->price; ?> грн/<?= $r_chunk->units; ?></h2>

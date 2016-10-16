@@ -41,3 +41,16 @@ body {
 .admin-content {
     margin-bottom: 50px;
 }
+.product-form-thumb{
+    width: 110px;
+    height: auto;
+    display: inline-block;
+    margin-right: 15px;
+}
+.pf-delphoto-btn {
+    margin-top: 5px;
+}
+#product-show label {
+    display: block;
+    margin-bottom: 10px;
+}

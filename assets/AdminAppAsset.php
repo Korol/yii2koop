@@ -35,7 +35,8 @@ class AdminAppAsset extends AssetBundle
         'js/jquery.prettyPhoto.js',
         'js/jquery.cookie.js',
         'js/jquery.accordion.js',
-        'js/main.js',
+//        'js/main.js',
+        'js/admin.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

@@ -26,6 +26,16 @@ $products_marks = [
     ],
 ];
 $product_category = $product->category;
+// фото товара
+$mainImg = $product->getImage(); // главное
+$gallery = $product->getImages(); // остальные
+if(!empty($gallery)){
+    foreach($gallery as $gal_k => $gal_itm){
+        if($gal_itm->id == $mainImg->id){
+            unset($gallery[$gal_k]); // удаляем копию главной картинки
+        }
+    }
+}
 ?>
 
 <section>
@@ -58,30 +68,33 @@ $product_category = $product->category;
         }
         ?>
         <div class="view-product">
-            <?= Html::img('@web' . $product_images_path . $product->img, ['alt' => Html::encode($product->title), 'class' => 'pd-main-img']); ?>
+            <a rel="group" href="/<?=$mainImg->getPathToOrigin(); ?>" class="fancybox">
+            <?= Html::img($mainImg->getUrl(), ['alt' => Html::encode($product->title), 'class' => 'pd-main-img']); ?>
+            </a>
 <!--            <h3>ZOOM</h3>-->
         </div>
         <?= $product_mark; ?>
+    <?php if(!empty($gallery)): ?>
         <div id="similar-product" class="carousel slide" data-ride="carousel">
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner product-details-photos-slide">
-                <div class="item active">
-                    <a href=""><img src="/images/shop/products/boroshno.jpg" alt=""></a>
-                    <a href=""><img src="/images/shop/products/grechka.jpg" alt=""></a>
-                    <a href=""><img src="/images/shop/products/manka.jpg" alt=""></a>
+        <?php
+        $gi = 0;
+        $gallery_chunks = array_chunk($gallery, 3);
+            foreach($gallery_chunks as $g_chunk):
+        ?>
+                <div class="item <?= ($gi == 0) ? 'active' : ''; ?>">
+                    <?php foreach($g_chunk as $g_item): ?>
+                    <a rel="group" class="fancybox" href="/<?=$g_item->getPathToOrigin(); ?>">
+                        <img src="<?=$g_item->getUrl('90x90'); ?>" alt="<?=$product->title; ?>">
+                    </a>
+                    <?php endforeach; ?>
                 </div>
-                <div class="item">
-                    <a href=""><img src="/images/shop/products/ris.jpg" alt=""></a>
-                    <a href=""><img src="/images/shop/products/saxar.jpg" alt=""></a>
-                    <a href=""><img src="/images/shop/products/sol.jpg" alt=""></a>
-                </div>
-                <div class="item">
-                    <a href=""><img src="/images/shop/products/boroshno.jpg" alt=""></a>
-                    <a href=""><img src="/images/shop/products/grechka.jpg" alt=""></a>
-                    <a href=""><img src="/images/shop/products/manka.jpg" alt=""></a>
-                </div>
-
+        <?php
+                $gi++;
+            endforeach;
+        ?>
             </div>
 
             <!-- Controls -->
@@ -92,6 +105,7 @@ $product_category = $product->category;
                 <i class="fa fa-angle-right"></i>
             </a>
         </div>
+    <?php endif; ?>
 
     </div>
     <div class="col-sm-7">
@@ -134,14 +148,17 @@ $product_category = $product->category;
                     $recommended_item_class = ($recommend_items_cnt == 0) ? 'active' : '';
                     ?>
                     <div class="item <?= $recommended_item_class; ?>">
-                        <?php foreach($recommended_chunk as $r_chunk): ?>
+                        <?php
+                        foreach($recommended_chunk as $r_chunk):
+                            $rch_main_img = $r_chunk->getImage();
+                        ?>
                             <div class="col-sm-4">
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <div class="category-img-container">
                                                 <a href="<?=Url::to(['shop/product', 'id' => $r_chunk->id, 'slug' => $r_chunk->url]); ?>" title="<?=Html::encode($r_chunk->title); ?>">
-                                                    <?= Html::img('@web' . $product_images_path . $r_chunk->img, ['alt' => Html::encode($r_chunk->title)]); ?>
+                                                    <?= Html::img($rch_main_img->getUrl('x255'), ['alt' => Html::encode($r_chunk->title)]); ?>
                                                 </a>
                                             </div>
                                             <h2><?= $r_chunk->price; ?> грн/<?= $r_chunk->units; ?></h2>
