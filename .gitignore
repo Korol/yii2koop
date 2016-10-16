@@ -28,3 +28,6 @@ phpunit.phar
 
 #db settings
 /config/db.php
+
+#upload folder
+/web/upload
