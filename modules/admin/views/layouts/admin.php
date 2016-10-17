@@ -59,6 +59,8 @@ ltAppAsset::register($this);
                 $menuItems = [
                     ['label' => 'Товары', 'url' => ['/admin/product']],
                     ['label' => 'Категории', 'url' => ['/admin/category']],
+                    ['label' => 'Производители', 'url' => ['/admin/producer']],
+                    ['label' => 'Поставщики', 'url' => ['/admin/provider']],
                     ['label' => 'Пользователи', 'url' => ['/rbac/user']],
 //                    ['label' => 'Личка', 'url' => ['/private/index']],
                     Yii::$app->user->isGuest ? (
