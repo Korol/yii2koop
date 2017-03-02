@@ -3,6 +3,7 @@
 namespace app\modules\admin\models;
 
 use Yii;
+use app\components\Slug;
 
 /**
  * This is the model class for table "product".
@@ -65,6 +66,7 @@ class Product extends \yii\db\ActiveRecord
             [['category_id', 'provider_id', 'producer_id', 'show', 'qty'], 'integer'],
             [['content', 'new', 'hit', 'sale', 'popular', 'recommended', 'write_off', 'special_conditions'], 'string'],
             [['added_date', 'provider_date'], 'safe'],
+            [['added_date', 'provider_date'], 'default', 'value' => null],
             [['title', 'url', 'units', 'keywords', 'description', 'img', 'sku'], 'string', 'max' => 255],
             [['image'], 'file', 'extensions' => 'png, jpg, gif, jpeg'],
             [['gallery'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'maxFiles' => 6],
@@ -143,5 +145,16 @@ class Product extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            $this->added_date = (empty($this->added_date)) ? date('Y-m-d H:i:s') : $this->added_date . ' ' . date('H:i:s');
+            $this->provider_date = (empty($this->provider_date)) ? date('Y-m-d H:i:s') : $this->provider_date . ' ' . date('H:i:s');
+            $this->url = (empty($this->url)) ? Slug::url_slug($this->title): $this->url;
+            return true;
+        }
+        return false;
     }
 }

@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\modules\admin\models\Product;
 use app\modules\admin\models\ProductSearch;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,6 +68,17 @@ class ProductController extends Controller
         $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if($model->image){
+                $model->upload();
+            }
+            unset($model->image); // !!!! IMPORTANT !!!!
+            $model->gallery = UploadedFile::getInstances($model, 'gallery');
+            if($model->gallery){
+                $model->uploadGallery();
+            }
+
             Yii::$app->session->setFlash('success', 'Товар ' . $model->title . ' успешно создан!');
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -115,7 +127,9 @@ class ProductController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->removeImages();
+        $model->delete();
 
         return $this->redirect(['index']);
     }

@@ -9,6 +9,9 @@ use yii\widgets\DetailView;
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Товары', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$producer = \app\modules\admin\models\Producer::find()->where(['id' => $model->producer_id])->asArray()->one();
+$provider = \app\modules\admin\models\Provider::find()->where(['id' => $model->provider_id])->asArray()->one();
 ?>
 <div class="product-view container">
 
@@ -81,8 +84,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'recommended',
                 'value' => $model->recommended ? 'Да' : 'Нет',
             ],
-            'provider_id',
-            'producer_id',
+            [
+                'attribute' => 'provider_id',
+                'value' => $provider['title'],
+            ],
+            [
+                'attribute' => 'producer_id',
+                'value' => $producer['title'],
+            ],
             'sku',
             'added_date',
             'provider_date',

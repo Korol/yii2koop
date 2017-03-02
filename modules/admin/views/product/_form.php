@@ -9,6 +9,9 @@ mihaildev\elfinder\Assets::noConflict($this);
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Product */
 /* @var $form yii\widgets\ActiveForm */
+
+$providers = \yii\helpers\ArrayHelper::map(\app\modules\admin\models\Provider::find()->orderBy('title ASC')->asArray()->all(), 'id', 'title');
+$producers = \yii\helpers\ArrayHelper::map(\app\modules\admin\models\Producer::find()->orderBy('title ASC')->asArray()->all(), 'id', 'title');
 ?>
 
 <div class="product-form">
@@ -17,13 +20,13 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'url')->textInput(['maxlength' => true, 'placeholder' => 'Оставьте поле пустым – и URL будет сгенерирован автоматически']) ?>
 
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'price')->textInput(['maxlength' => true, 'placeholder' => 'Число, разделитель дробной части – точка: 13.95']) ?>
 
-    <?= $form->field($model, 'price_special')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'price_special')->textInput(['maxlength' => true, 'placeholder' => 'Число, разделитель дробной части – точка: 13.95']) ?>
 
-    <?= $form->field($model, 'units')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'units')->textInput(['maxlength' => true, 'placeholder' => 'кг, г, шт, уп, мешок, бут, ...']) ?>
 
     <div class="form-group field-product-category_id">
         <label class="control-label" for="product-category_id">Категория</label>
@@ -87,31 +90,47 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'recommended')->checkbox(['0', '1']) ?>
 
-<!--    --><?//= $form->field($model, 'new')->dropDownList(['0' => 'Нет', '1' => 'Да'], ['prompt' => '']) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'hit')->dropDownList(['0' => 'Нет', '1' => 'Да'], ['prompt' => '']) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'sale')->dropDownList(['0' => 'Нет', '1' => 'Да'], ['prompt' => '']) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'popular')->dropDownList(['0' => 'Нет', '1' => 'Да'], ['prompt' => '']) ?>
-<!---->
-<!--    --><?//= $form->field($model, 'recommended')->dropDownList(['0' => 'Нет', '1' => 'Да'], ['prompt' => '']) ?>
+    <?= $form->field($model, 'provider_id')->dropDownList($providers); ?>
 
-    <?= $form->field($model, 'provider_id')->textInput() ?>
-
-    <?= $form->field($model, 'producer_id')->textInput() ?>
+    <?= $form->field($model, 'producer_id')->dropDownList($producers) ?>
 
     <?= $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'added_date')->textInput() ?>
+    <?php
+    if($model->isNewRecord){
+        $model->added_date = $model->provider_date = date('Y-m-d');
+    }
+    else{
+        if(!empty($model->added_date)){
+            $added_ex = explode(' ', $model->added_date);
+            $model->added_date = $added_ex[0];
+        }
+        else{
+            $model->added_date = date('Y-m-d');
+        }
+        if(!empty($model->provider_date)){
+            $provider_ex = explode(' ', $model->provider_date);
+            $model->provider_date = $provider_ex[0];
+        }
+        else{
+            $model->provider_date = date('Y-m-d');
+        }
+    }
+    ?>
+    <?= $form->field($model, 'added_date')->widget(\yii\jui\DatePicker::classname(), [
+        'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
-    <?= $form->field($model, 'provider_date')->textInput() ?>
+    <?= $form->field($model, 'provider_date')->widget(\yii\jui\DatePicker::classname(), [
+        'language' => 'ru',
+        'dateFormat' => 'yyyy-MM-dd',
+    ]) ?>
 
     <?= $form->field($model, 'write_off')->dropDownList([ 'нет' => 'нет', 'бой' => 'бой', 'утеря' => 'утеря', 'повреждение' => 'повреждение', ], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'special_conditions')->textarea(['rows' => 6]) ?>
 
-<!--    --><?//= $form->field($model, 'show')->dropDownList(['0' => 'Скрыт', '1' => 'Активен']) ?>
     <?php $model->show = $model->isNewRecord ? 1 : $model->show; ?>
     <?= $form->field($model, 'show')->radioList(['0' => 'Скрыт', '1' => 'Активен']) ?>
 
