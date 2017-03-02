@@ -127,7 +127,7 @@ $producers = \yii\helpers\ArrayHelper::map(\app\modules\admin\models\Producer::f
         'dateFormat' => 'yyyy-MM-dd',
     ]) ?>
 
-    <?= $form->field($model, 'write_off')->dropDownList([ 'нет' => 'нет', 'бой' => 'бой', 'утеря' => 'утеря', 'повреждение' => 'повреждение', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'write_off')->dropDownList($model->getWriteOffList()) ?>
 
     <?= $form->field($model, 'special_conditions')->textarea(['rows' => 6]) ?>
 

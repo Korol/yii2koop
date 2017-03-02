@@ -205,4 +205,14 @@ class Product extends \yii\db\ActiveRecord
             'штука' => 'штука',
         ];
     }
+
+    public function getWriteOffList()
+    {
+        return [
+            'нет' => 'нет',
+            'бой' => 'бой',
+            'утеря' => 'утеря',
+            'повреждение' => 'повреждение'
+        ];
+    }
 }
