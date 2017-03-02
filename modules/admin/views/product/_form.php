@@ -94,7 +94,7 @@ $producers = \yii\helpers\ArrayHelper::map(\app\modules\admin\models\Producer::f
 
     <?= $form->field($model, 'producer_id')->dropDownList($producers) ?>
 
-    <?= $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
+<!--    --><?//= $form->field($model, 'sku')->textInput(['maxlength' => true]) ?>
 
     <?php
     if($model->isNewRecord){
