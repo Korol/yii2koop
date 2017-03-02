@@ -26,7 +26,7 @@ $producers = \yii\helpers\ArrayHelper::map(\app\modules\admin\models\Producer::f
 
     <?= $form->field($model, 'price_special')->textInput(['maxlength' => true, 'placeholder' => 'Число, разделитель дробной части – точка: 13.95']) ?>
 
-    <?= $form->field($model, 'units')->textInput(['maxlength' => true, 'placeholder' => 'кг, г, шт, уп, мешок, бут, ...']) ?>
+    <?= $form->field($model, 'units')->dropDownList($model->getUnitsList()) ?>
 
     <div class="form-group field-product-category_id">
         <label class="control-label" for="product-category_id">Категория</label>
