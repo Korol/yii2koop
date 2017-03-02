@@ -62,6 +62,7 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['title', 'price', 'units'], 'required'],
             [['price', 'price_special'], 'number'],
             [['category_id', 'provider_id', 'producer_id', 'show', 'qty'], 'integer'],
             [['content', 'new', 'hit', 'sale', 'popular', 'recommended', 'write_off', 'special_conditions'], 'string'],
@@ -116,6 +117,7 @@ class Product extends \yii\db\ActiveRecord
             'special_conditions' => 'Условия Акции',
             'show' => 'Статус',
             'qty' => 'Кол-во',
+            'img' => 'Фото',
         ];
     }
 
@@ -156,5 +158,12 @@ class Product extends \yii\db\ActiveRecord
             return true;
         }
         return false;
+    }
+
+    public function getMainImage($id)
+    {
+        $mdl = $this->findOne($id);
+        $img = $mdl->getImage();
+        return ($img) ? $img->getUrl('50x') : '';
     }
 }

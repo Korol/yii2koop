@@ -9,6 +9,10 @@ use yii\grid\GridView;
 
 $this->title = 'Товары';
 $this->params['breadcrumbs'][] = $this->title;
+
+$category_filter = '<select class="form-control" name="ProductSearch[category_id]"><option value=""></option>';
+$category_filter .= \app\components\MenuWidget::widget(['tpl' => 'select_product', 'model' => $searchModel]);
+$category_filter .= '</select>';
 ?>
 <div class="product-index">
 
@@ -34,8 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'price',
             [
                 'attribute' => 'price',
+                'format' => 'raw',
                 'value' => function($data){
-                    return $data->price . ' ' . $data->units;
+                    return $data->price . '<br>грн/' . $data->units;
                 },
                 'contentOptions'=>['style'=>'width: 100px;'],
             ],
@@ -47,7 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function($data){
                     return $data->getCategoryTitle();
                 },
-                'filter' =>  \yii\helpers\ArrayHelper::map(\app\models\Category::find()->all(), 'id', 'title'),
+//                'filter' =>  \yii\helpers\ArrayHelper::map(\app\models\Category::find()->all(), 'id', 'title'),
+                'filter' =>  $category_filter,
                 'contentOptions'=>['style'=>'width: 280px;'],
             ],
             // 'content:ntext',
@@ -109,9 +115,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => [0 => 'Скрыт', 1 => 'Активен'],
             ],
-             'qty',
+//             'qty',
+            [
+                'attribute' => 'img',
+                'format' => 'raw',
+                'value' => function($data){
+                    $img = $data->getMainImage($data->id);
+                    return (!empty($img)) ? Html::img(\yii\helpers\Url::toRoute($img), ['alt' => $data->title]) : '';
+                },
+                'filter' => '',
+                'enableSorting' => false,
+            ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header'=>'Действия',
+                'headerOptions' => ['width' => '80'],
+            ],
         ],
     ]); ?>
 </div>
