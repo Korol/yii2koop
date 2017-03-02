@@ -69,8 +69,8 @@ class Product extends \yii\db\ActiveRecord
             [['added_date', 'provider_date'], 'safe'],
             [['added_date', 'provider_date'], 'default', 'value' => null],
             [['title', 'url', 'units', 'keywords', 'description', 'img', 'sku'], 'string', 'max' => 255],
-            [['image'], 'file', 'extensions' => 'png, jpg, gif, jpeg'],
-            [['gallery'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'maxFiles' => 6],
+            [['image'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'maxSize' => 102400],
+            [['gallery'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'maxFiles' => 6, 'maxSize' => 102400],
         ];
     }
 
