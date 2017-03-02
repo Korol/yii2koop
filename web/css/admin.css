@@ -54,7 +54,6 @@ body {
     display: block;
     margin-bottom: 10px;
 }
-
 div.required label:after {
     content: " *";
     color: red;
