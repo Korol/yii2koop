@@ -25,6 +25,9 @@ $category_filter .= '</select>';
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'pager' => [
+            'maxButtonCount' => 200,
+        ],
         'columns' => [
 //            ['class' => 'yii\grid\SerialColumn'],
 
