@@ -17,22 +17,41 @@ class ShopController extends FrontendController {
 
     public function actionIndex()
     {
-        $popular_products = Product::find()->where(['popular' => '1'])->limit(6)->all();
-        $new_products = Product::find()->where(['new' => '1'])->limit(4)->all();
-        $hit_products = Product::find()->where(['hit' => '1'])->limit(4)->all();
-        $sale_products = Product::find()->where(['sale' => '1'])->limit(4)->all();
-        $recommended_products = Product::find()->where(['recommended' => '1'])->limit(8)->all();
+        $popular_products = Product::find()->where(['popular' => '1'])->all();
+        $sale_products = Product::find()->where(['sale' => '1'])->all();
+        $new_products = $hit_products = $recommended_products = [];
+        $carousel = [
+            0 => ['image' => '1.jpg'],
+            1 => ['image' => '2.jpg'],
+            2 => ['image' => '3.jpg'],
+            3 => ['image' => '4.jpg'],
+            4 => ['image' => '5.jpg'],
+        ]; // TODO: сделать управление баннерами через Админку
+
+        if($this->themeName == 'basic'){
+            $new_products = Product::find()->where(['new' => '1'])->all();
+            $hit_products = Product::find()->where(['hit' => '1'])->all();
+            $recommended_products = Product::find()->where(['recommended' => '1'])->all();
+            $carousel = [];
+        }
         $this->setMeta();
-        return $this->render('index', compact('popular_products', 'new_products', 'hit_products', 'sale_products', 'recommended_products'));
+        return $this->render('index', compact('popular_products', 'new_products', 'hit_products', 'sale_products', 'recommended_products', 'carousel'));
     }
 
     public function actionCategory($id, $slug = '', $page = 1)
     {
         $category = Category::findOne(['id' => $id]);
         if(empty($category)){
-            throw new \yii\web\HttpException(404, 'Такой категории нт!');
+            throw new \yii\web\HttpException(404, 'Такой категории нет!');
         }
-        $query = Product::find()->where(['category_id' => $id]);
+        $this->setActiveCategory($id);
+        $sub_categories = $this->getSubcategoriesIds($id);
+        if(!empty($sub_categories)){
+            $query = Product::find()->where(['in', 'category_id', $sub_categories]);
+        }
+        else{
+            $query = Product::find()->where(['category_id' => $id]);
+        }
         $pages = new Pagination([
             'totalCount' => $query->count(),
             'pageSize' => 15,
