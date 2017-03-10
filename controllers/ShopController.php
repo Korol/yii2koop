@@ -65,13 +65,19 @@ class ShopController extends FrontendController {
     public function actionProduct($id, $slug = '')
     {
 //        $product = Product::find()->with('category')->where(['id' => $id])->limit(1)->one(); // жадная загрузка
-        $product = Product::findOne($id); // ленивая загрузка
+        $product = Product::findOne(['id' => $id, 'show' => 1]); // ленивая загрузка
         if(empty($product)){
             throw new \yii\web\HttpException(404, 'Такого продукта нет!');
         }
         $recommended_products = Product::find()->where(['recommended' => '1'])->limit(8)->all();
+        $similar_products = Product::find()
+            ->where(['category_id' => $product->category_id])
+            ->andWhere(['show' => 1])
+            ->andWhere(['!=', 'id', $product->id])
+            ->limit(6)
+            ->all();
         $this->setMeta($product->title, $product->keywords, $product->description);
-        return $this->render('product', compact('product', 'recommended_products'));
+        return $this->render('product', compact('product', 'recommended_products', 'similar_products'));
     }
 
     public function actionSearch($search, $page = 1)
