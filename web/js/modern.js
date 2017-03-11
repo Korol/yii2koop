@@ -52,7 +52,43 @@ jQuery(document).ready(function($) {
         $('#pcost_'+pp_id[1]).text(newcost);
         countCartCosts();
     });
+
+    // add product to cart
+    $('.grid-buy-btn').on('click', function(e){
+        e.preventDefault();
+        var pid = $(this).data('id');
+        var pqty = $('#pqty_'+pid).val();
+        $.ajax({
+            url: '/cart/add',
+            data: { id : pid, qty : pqty },
+            type: 'GET',
+            success: function (res) {
+                showCartModal(res);
+            },
+            error: function () {
+                console.log('Add Error!');
+            }
+        });
+    });
 });
+
+function showCartModal(content){
+    $('#modal_cart .modal-body').html(content);
+    $('#modal_cart').modal();
+}
+
+function clearCart(){
+    $.ajax({
+        url: '/cart/clear',
+        type: 'GET',
+        success: function (res) {
+            showCartModal(res);
+        },
+        error: function () {
+            console.log('Clear Error!');
+        }
+    });
+}
 
 function removeFromCart(p_id){
     $('#cart_tr_'+p_id).remove();

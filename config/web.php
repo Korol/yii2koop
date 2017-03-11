@@ -122,6 +122,9 @@ $config = [
                 ],
             ],
         ],
+        'assetManager' => [
+            'appendTimestamp' => true, // ОТКЛЮЧИТЬ НА ПРОДАКШЕНЕ!!!!!!!
+        ],
 
     ],
     'as access' => [
@@ -133,6 +136,7 @@ $config = [
             'blog/*',
             'debug/*',
             'yii2images/*',
+            'cart/*',
 //            'elfinder/*',
 //            'admin/*',
 //            'rbac/*',

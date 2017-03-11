@@ -6,6 +6,7 @@ use yii\helpers\Html;
 use app\assets\ModernAppAsset;
 use app\assets\ltAppAsset;
 use yii\helpers\Url;
+use yii\bootstrap\Modal;
 
 ModernAppAsset::register($this);
 ltAppAsset::register($this);
@@ -107,6 +108,21 @@ ltAppAsset::register($this);
         </div><!-- /.page-content -->
     </div><!-- /.page-wrapper -->
 </div><!-- /.container -->
+
+<?php
+Modal::begin([
+    'header' => '<h2>Корзина</h2>',
+    'toggleButton' => ['label' => 'click me'],
+    'id' => 'modal_cart',
+    'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+        <button type="button" class="btn btn-success">Оформить заказ</button>
+        <button type="button" class="btn btn-danger" onclick="clearCart();">Очистить корзину</button>',
+]);
+
+echo 'Say hello...';
+
+Modal::end();
+?>
 
 <?php $this->endBody() ?>
 </body>

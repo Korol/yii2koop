@@ -40,7 +40,7 @@ if(!empty($product)){
                     </div><!-- /input-group -->
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4">
-                    <button class="btn btn-success pull-right grid-buy-btn" onclick="document.location.href='/cart.php';" role="button">Купить</button>
+                    <a href="<?=Url::to(['cart/add', 'id' => $product->id]); ?>" data-id="<?=$product->id; ?>" class="btn btn-success pull-right grid-buy-btn">Купить</a>
                 </div>
             </div>
         </div>
