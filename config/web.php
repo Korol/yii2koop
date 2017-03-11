@@ -37,6 +37,7 @@ $config = [
 //            'placeHolderPath' => '@webroot/images/placeHolder.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
             'placeHolderPath' => '@webroot/images/no-image.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
         ],
+
     ],
     'components' => [
         'authManager' => [
