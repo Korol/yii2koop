@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\modules\admin\models;
 
 use Yii;
-use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "order".
@@ -48,8 +48,7 @@ class Order extends ActiveRecord
         ];
     }
 
-    public function getOrderItem()
-    {
+    public function getOrderItem(){
         return $this->hasMany(OrderItem::className(), ['order_id' => 'id']);
     }
 
@@ -60,7 +59,6 @@ class Order extends ActiveRecord
     {
         return [
             [['name', 'email', 'phone', 'address'], 'required'],
-            ['email', 'email'],
             [['created_at', 'updated_at'], 'safe'],
             [['qty', 'user_id'], 'integer'],
             [['sum'], 'number'],
@@ -75,18 +73,38 @@ class Order extends ActiveRecord
     public function attributeLabels()
     {
         return [
-//            'id' => 'ID',
-//            'created_at' => 'Created At',
-//            'updated_at' => 'Updated At',
-//            'qty' => 'Qty',
-//            'sum' => 'Sum',
-//            'status' => 'Status',
-//            'user_id' => 'User ID',
+            'id' => '№ заказа',
+            'created_at' => 'Создан',
+            'updated_at' => 'Отредактирован',
+            'qty' => 'Кол-во товаров',
+            'sum' => 'Сумма',
+            'status' => 'Статус',
+            'user_id' => 'Пользователь',
             'name' => 'Имя',
             'email' => 'Email',
             'phone' => 'Телефон',
-            'address' => 'Адрес доставки',
+            'address' => 'Адрес',
             'comment' => 'Комментарий к заказу',
+        ];
+    }
+
+    public static function getStatusList()
+    {
+        return [
+            '0' => 'Новый',
+            '1' => 'Обработан',
+            '2' => 'Оплачен',
+            '3' => 'Выполнен',
+        ];
+    }
+
+    public static function getStatusListHtml()
+    {
+        return [
+            '0' => '<span class="label label-danger">Новый</span>',
+            '1' => '<span class="label label-warning">Обработан</span>',
+            '2' => '<span class="label label-info">Оплачен</span>',
+            '3' => '<span class="label label-success">Выполнен</span>',
         ];
     }
 }

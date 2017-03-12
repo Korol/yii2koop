@@ -100,6 +100,19 @@ class CartController extends FrontendController
             $order->sum = $session['cart.sum'];
             if($order->save()){
                 $this->saveOrderItems($session['cart'], $order->id);
+                // send client email
+                Yii::$app->mailer->compose('order', ['session' => $session])
+                    ->setFrom(['test@mail.ru' => 'Чудесный магазин'])
+                    ->setTo($order->email)
+                    ->setSubject('Заказ №' . $order->id)
+                    ->send();
+                // send admin email
+                Yii::$app->mailer->compose('order', ['session' => $session])
+                    ->setFrom(['test@mail.ru' => 'Чудесный магазин'])
+                    ->setTo(Yii::$app->params['adminEmail'])
+                    ->setSubject('Заказ №' . $order->id)
+                    ->send();
+                // remove cart
                 $session->remove('cart');
                 $session->remove('cart.qty');
                 $session->remove('cart.sum');

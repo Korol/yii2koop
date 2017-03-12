@@ -10,7 +10,7 @@ use app\models\Login;
 use app\models\Signup;
 use app\models\ContactForm;
 
-class SiteController extends Controller
+class SiteController extends FrontendController
 {
     /**
      * @inheritdoc
@@ -99,8 +99,8 @@ class SiteController extends Controller
             $role = key(Yii::$app->authManager->getRolesByUser(Yii::$app->user->getId()));
             $redirect_map = [
                 'user' => '/',
-                'manager' => '/admin',
-                'admin' => '/rbac/user',
+                'manager' => '/admin/product',
+                'admin' => '/admin/order',
             ];
             if(!empty($role) && in_array($role, array_keys($redirect_map))){
                 return $this->redirect([$redirect_map[$role]]);
