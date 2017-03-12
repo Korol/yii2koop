@@ -21,7 +21,7 @@ if(!empty($product)){
                 </h3>
             </div>
             <div class="product-grid-text">
-                <?= $product->description; ?>
+                <?= strip_tags($product->content); ?>
             </div>
             <div class="row collapse pt-buttons" id="btns_pt_<?=$product->id; ?>">
                 <div class="col-lg-7 col-md-7 col-sm-7 col-xs-8">
