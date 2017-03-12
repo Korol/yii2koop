@@ -1,5 +1,5 @@
 <?php
-
+$this->title = 'Благодарим вас за заказ!';
 ?>
 <div class="col-md-9 col-md-push-3 content-block">
     <div class="row">

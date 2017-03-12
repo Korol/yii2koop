@@ -94,6 +94,7 @@ ltAppAsset::register($this);
                 <!-- <li><a href="#">Вход</a></li>
                 <li><a href="#">Регистрация</a></li> -->
                 <li><a href="#" onclick="return getModalCart();">Корзина <span id="top_cart_qty"><?= $this->params['cart_qty']; ?></span></a></li>
+                <li><a href="<?=Url::to(['/admin']); ?>">Вход</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
