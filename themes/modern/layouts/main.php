@@ -54,11 +54,11 @@ ltAppAsset::register($this);
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <!-- search -->
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="<?=Url::to(['shop/search']); ?>" method="get" name="top_search">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Поиск...">
+                    <input type="text" name="search" class="form-control" placeholder="Поиск...">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
+                        <button class="btn btn-default" type="submit">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         </button>
                       </span>
@@ -70,23 +70,23 @@ ltAppAsset::register($this);
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">О НАС <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Договор</a></li>
-                        <li><a href="#">Наши партнеры</a></li>
-                        <li><a href="#">Полезное</a></li>
-                        <li><a href="#">ЧАВО</a></li>
+                        <li><a href="/shop">Договор</a></li>
+                        <li><a href="/shop">Наши партнеры</a></li>
+                        <li><a href="/shop">Полезное</a></li>
+                        <li><a href="/shop">ЧАВО</a></li>
                     </ul>
                 </li>
-                <li><a href="#">НОВОСТИ</a></li>
+                <li><a href="/shop">НОВОСТИ</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ДОСТАВКА <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Безоплатно</a></li>
-                        <li><a href="#">Оплата</a></li>
-                        <li><a href="#">Гарантии</a></li>
-                        <li><a href="#">График работы</a></li>
+                        <li><a href="/shop">Безоплатно</a></li>
+                        <li><a href="/shop">Оплата</a></li>
+                        <li><a href="/shop">Гарантии</a></li>
+                        <li><a href="/shop">График работы</a></li>
                     </ul>
                 </li>
-                <li><a href="#">КОНТАКТЫ</a></li>
+                <li><a href="/shop">КОНТАКТЫ</a></li>
             </ul>
             <!-- /top menu -->
             <ul class="nav navbar-nav navbar-right">

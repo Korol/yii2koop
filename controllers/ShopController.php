@@ -54,7 +54,7 @@ class ShopController extends FrontendController {
         }
         $pages = new Pagination([
             'totalCount' => $query->count(),
-            'pageSize' => 15,
+            'pageSize' => 18,
             'pageSizeParam' => false,
             'forcePageParam' => false]);
         $products = $query->orderBy(['id' => SORT_DESC])->offset($pages->offset)->limit($pages->limit)->all();
@@ -90,7 +90,7 @@ class ShopController extends FrontendController {
         $query = Product::find()->where(['like', 'title', $search])->andWhere(['show' => 1]);
         $pages = new Pagination([
             'totalCount' => $query->count(),
-            'pageSize' => 15,
+            'pageSize' => 18,
             'pageSizeParam' => false,
             'forcePageParam' => false]);
         $products = $query->orderBy(['id' => SORT_DESC])->offset($pages->offset)->limit($pages->limit)->all();
