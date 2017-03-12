@@ -20,7 +20,7 @@ class OrderSearch extends Order
     {
         return [
             [['id', 'qty', 'user_id'], 'integer'],
-            [['created_at', 'updated_at', 'status', 'name', 'email', 'phone', 'address', 'comment', 'created'], 'safe'],
+            [['created_at', 'updated_at', 'status', 'name', 'email', 'phone', 'address', 'comment'], 'safe'],
             [['sum'], 'number'],
         ];
     }
