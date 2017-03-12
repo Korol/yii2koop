@@ -10,6 +10,7 @@ use yii\helpers\Url;
 $this->title = 'Заказ №' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Заказы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+$status_list = $model->getStatusListHtml();
 ?>
 <div class="order-view container">
 
@@ -37,10 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'format' => 'html',
-                'value' => function($data){
-                    $status_list = $data::getStatusListHtml();
-                    return $status_list[$data->status];
-                },
+                'value' => $status_list[$model->status],
             ],
 //            'user_id',
             'name',
@@ -53,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     $items = $model->orderItem;
-    /*if(!empty($items)):
+    if(!empty($items)):
     ?>
         <h4>Товары в заказе:</h4>
         <div class="table-responsive">
@@ -84,6 +82,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tbody>
             </table>
         </div>
-    <?php endif;*/ ?>
+    <?php endif; ?>
 
 </div>
