@@ -70,12 +70,12 @@ use yii\helpers\Url;
             </tbody>
         </table>
     </div>
-    <div class="col-lg-12">
+    <?php /*div class="col-lg-12">
         <div class="alert alert-danger">
             <b>Информация о Бесплатной доставке:</b><br>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt inventore explicabo provident itaque, nam ipsam nesciunt recusandae magni possimus est earum sed vel atque, quisquam saepe assumenda. Nisi cupiditate ut et, perferendis eos delectus sed eum sit quidem cum facilis suscipit aperiam reprehenderit vel voluptatem quo consequuntur magni neque aut!
         </div>
-    </div>
+    </div*/?>
 </div>
 
 <?php $form = \yii\widgets\ActiveForm::begin([
@@ -85,8 +85,8 @@ use yii\helpers\Url;
 <div class="row cart-info-block">
     <div class="col-lg-12">
         <div class="well">
-            <b>Пояснения по заполнению этой формы:</b>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ex, quia aliquid aut necessitatibus, repellat error ullam fugit asperiores vero doloribus, eius quos saepe molestiae at odio expedita inventore dolores iste doloremque tenetur officia, veritatis. Incidunt, facilis dicta sed dignissimos dolores consectetur nam sint, quis, perferendis eaque totam tenetur placeat.</p>
+            <?php /*b>Пояснения по заполнению этой формы:</b>
+            <p>Какой-то текс.</p*/?>
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
 
