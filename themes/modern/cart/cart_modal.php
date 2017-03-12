@@ -17,7 +17,9 @@
                     <td><?= $product['price']; ?> грн.</td>
                     <td><?= $product['qty']; ?></td>
                     <td><?= number_format((float)($product['price'] * $product['qty']), 2); ?> грн.</td>
-                    <td class="text-right"><span class="glyphicon glyphicon-remove text-danger modal-del-item" aria-hidden="true"></span></td>
+                    <td class="text-right">
+                        <span data-id="<?=$p_id; ?>" class="glyphicon glyphicon-remove text-danger modal-del-item" aria-hidden="true"></span>
+                    </td>
                 </tr>
             <?php endforeach; ?>
                 <tr>

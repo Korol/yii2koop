@@ -30,9 +30,9 @@ jQuery(document).ready(function($) {
     // minus with price
     $('.ppqminus').click(function(event) {
         var pm_id = this.id.split('_');
-        var pm_qty = $('#ppqty_'+pm_id[1]).val();
+        var pm_qty = $('#pqty_'+pm_id[1]).val();
         if(pm_qty*1 > 1){
-            $('#ppqty_'+pm_id[1]).val((pm_qty*1-1));
+            $('#pqty_'+pm_id[1]).val((pm_qty*1-1));
             // price & cost
             var pprice = $('#pprice_'+pm_id[1]).text();
             var newcost = (pprice*(pm_qty*1-1)).toFixed(2);
@@ -44,8 +44,8 @@ jQuery(document).ready(function($) {
     // plus with price
     $('.ppqplus').click(function(event) {
         var pp_id = this.id.split('_');
-        var pp_qty = $('#ppqty_'+pp_id[1]).val();
-        $('#ppqty_'+pp_id[1]).val((pp_qty*1+1));
+        var pp_qty = $('#pqty_'+pp_id[1]).val();
+        $('#pqty_'+pp_id[1]).val((pp_qty*1+1));
         // price & cost
         var pprice = $('#pprice_'+pp_id[1]).text();
         var newcost = (pprice*(pp_qty*1+1)).toFixed(2);
@@ -63,6 +63,7 @@ jQuery(document).ready(function($) {
             data: { id : pid, qty : pqty },
             type: 'GET',
             success: function (res) {
+                getCartQty();
                 showCartModal(res);
             },
             error: function () {
@@ -70,7 +71,81 @@ jQuery(document).ready(function($) {
             }
         });
     });
+
+    // delete product from cart
+    $('#modal_cart .modal-body').on('click', '.modal-del-item', function(){
+        var pid = $(this).data('id');
+        $.ajax({
+            url: '/cart/del-item',
+            data: { id : pid },
+            type: 'GET',
+            success: function (res) {
+                getCartQty();
+                showCartModal(res);
+            },
+            error: function () {
+                console.log('Add Error!');
+            }
+        });
+    });
+
+    // change product qty in cart
+    $('.cart-qty-oper').on('click', function(){
+        var pid = $(this).data('id');
+        var poper = $(this).data('oper');
+        var pm_qty = $('#pqty_'+pid).val();
+        var pm_check = (poper == 'minus') ? (pm_qty*1 - 1) : (pm_qty*1 + 1);
+        if(pm_check > 0) {
+            $.ajax({
+                url: '/cart/change-qty',
+                data: {id: pid, oper: poper},
+                type: 'GET',
+                dataType: 'json',
+                success: function (res) {
+                    $('#pqty_'+pid).val(res.qty);
+                    $('#pcost_'+pid).text(res.cost.toFixed(2));
+                    $('#cart_total').text(res.sum.toFixed(2));
+                },
+                error: function () {
+                    console.log('Change Error!');
+                }
+            });
+        }
+    });
 });
+
+function getCartQty(){
+    $.ajax({
+        url: '/cart/qty',
+        type: 'GET',
+        success: function (res) {
+            if(res*1 > 0){
+                $('#top_cart_qty').text('('+res+')');
+            }
+            else{
+                $('#top_cart_qty').text('');
+            }
+        },
+        error: function () {
+            console.log('Get Error!');
+        }
+    });
+}
+
+function getModalCart(){
+    $.ajax({
+        url: '/cart/show',
+        type: 'GET',
+        success: function (res) {
+            getCartQty();
+            showCartModal(res);
+        },
+        error: function () {
+            console.log('Get Error!');
+        }
+    });
+    return false;
+}
 
 function showCartModal(content){
     $('#modal_cart .modal-body').html(content);
@@ -82,6 +157,7 @@ function clearCart(){
         url: '/cart/clear',
         type: 'GET',
         success: function (res) {
+            getCartQty();
             showCartModal(res);
         },
         error: function () {
@@ -90,9 +166,21 @@ function clearCart(){
     });
 }
 
-function removeFromCart(p_id){
-    $('#cart_tr_'+p_id).remove();
-    countCartCosts();
+function removeFromCart(pid){
+    $.ajax({
+        url: '/cart/del-product',
+        data: { id : pid },
+        type: 'GET',
+        success: function (res) {
+            res = res*1;
+            getCartQty();
+            $('#cart_tr_'+pid).remove();
+            $('#cart_total').text(res.toFixed(2));
+        },
+        error: function () {
+            console.log('Remove Error!');
+        }
+    });
 }
 
 function countCartCosts(){

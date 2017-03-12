@@ -93,7 +93,7 @@ ltAppAsset::register($this);
                 <!-- <li><span class="glyphicon glyphicon-shopping-cart top-cart-icon" aria-hidden="true"></span></li> -->
                 <!-- <li><a href="#">Вход</a></li>
                 <li><a href="#">Регистрация</a></li> -->
-                <li><a href="/cart.php">Корзина (4)</a></li>
+                <li><a href="#" onclick="return getModalCart();">Корзина <span id="top_cart_qty"><?= $this->params['cart_qty']; ?></span></a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
@@ -112,14 +112,11 @@ ltAppAsset::register($this);
 <?php
 Modal::begin([
     'header' => '<h2>Корзина</h2>',
-    'toggleButton' => ['label' => 'click me'],
     'id' => 'modal_cart',
     'footer' => '<button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-        <button type="button" class="btn btn-success">Оформить заказ</button>
+        <a href="' . Url::to(['cart/view']) . '" class="btn btn-success">Оформить заказ</a>
         <button type="button" class="btn btn-danger" onclick="clearCart();">Очистить корзину</button>',
 ]);
-
-echo 'Say hello...';
 
 Modal::end();
 ?>

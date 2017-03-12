@@ -1,5 +1,6 @@
 <?php
-
+use yii\helpers\Html;
+use yii\helpers\Url;
 ?>
 <div class="col-md-9 col-md-push-3 content-block">
 <div class="row">
@@ -7,7 +8,7 @@
         <h3 class="lined"><span>Корзина</span></h3>
     </div>
 </div>
-<?php if(!empty($products)): ?>
+<?php if(!empty($session['cart'])): ?>
 <div class="row cart-info-block">
     <!-- <div class="col-lg-12 text-center">
         <h4><span class="label label-success">Заказ № 123456</span></h4>
@@ -20,50 +21,50 @@
     <div class="col-lg-12 cart-products-table-block">
         <table class="table table-bordered cart-products-table">
             <thead>
-            <th>#</th>
+<!--            <th>#</th>-->
             <th>Название</th>
-            <th>Ед.</th>
             <th>Цена</th>
             <th class="cart-qty-column">Кол-во товара</th>
             <th>Стоимость</th>
             <th>Удалить</th>
             </thead>
             <tbody>
-            <?php foreach($products as $key => $product): ?>
-                <tr id="cart_tr_<?=$product->id;?>">
-                    <td class="text-center"><?=++$key;?></td>
-                    <td><?=$product->title; ?></td>
-                    <td><?=$product->units; ?></td>
-                    <td><span id="pprice_<?=$product->id;?>"><?=$cart[$product->id]['price']; ?></span> грн</td>
+            <?php
+            $i = 1;
+            foreach($session['cart'] as $key => $product):
+            ?>
+                <tr id="cart_tr_<?=$key;?>">
+<!--                    <td class="text-center">--><?//=$i;?><!--</td>-->
+                    <td><?=$product['title']; ?></td>
+                    <td><span id="pprice_<?=$key;?>"><?=$product['price']; ?></span> грн</td>
                     <td>
                         <div class="input-group product-qty-grid-block">
                         <span class="input-group-btn">
-                            <button class="btn btn-default ppqminus" type="button" id="ppqminus_<?=$product->id;?>">
+                            <button class="btn btn-default cart-qty-oper" type="button" data-id="<?=$key; ?>" data-oper="minus">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                             </button>
                         </span>
-                            <input type="text" class="form-control qty-input" value="<?=$cart[$product->id]['qty'];?>" readonly id="ppqty_<?=$product->id;?>">
+                            <input type="text" class="form-control qty-input" value="<?=$product['qty'];?>" readonly id="pqty_<?=$key;?>">
                         <span class="input-group-btn">
-                            <button class="btn btn-default ppqplus" type="button" id="ppqplus_<?=$product->id;?>">
+                            <button class="btn btn-default cart-qty-oper" type="button" data-id="<?=$key; ?>" data-oper="plus">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                             </button>
                         </span>
                         </div><!-- /input-group -->
                     </td>
-                    <?php $p_cost = $cart[$product->id]['qty']*$cart[$product->id]['price']; ?>
-                    <td><span class="cart-cost" id="pcost_<?=$product->id;?>"><?=$p_cost; ?></span> грн</td>
+                    <td><span class="cart-cost" id="pcost_<?=$key;?>"><?=number_format(($product['qty']*$product['price']), 2); ?></span> грн</td>
                     <td class="text-center">
-                        <button type="button" onclick="removeFromCart(<?=$product->id;?>)" class="btn btn-danger">&times;</button>
+                        <button type="button" onclick="removeFromCart(<?=$key;?>)" class="btn btn-danger">&times;</button>
                     </td>
                 </tr>
-                <?php
-                $cart_total += $p_cost;
-                ?>
-            <?php endforeach; ?>
+            <?php
+                $i++;
+            endforeach;
+            ?>
             <tr>
                 <td colspan="7" class="text-right">
                     <span class="text-uppercase">Всего:</span>
-                    <span class="cart-total-cost"><span id="cart_total"><?=number_format($cart_total, 2);?></span></span> грн
+                    <span class="cart-total-cost"><span id="cart_total"><?=number_format($session['cart.sum'], 2);?></span></span> грн
                 </td>
             </tr>
             </tbody>
@@ -77,6 +78,10 @@
     </div>
 </div>
 
+<?php $form = \yii\widgets\ActiveForm::begin([
+    'class' => 'form-horizontal',
+    'method' => 'post',
+]); ?>
 <div class="row cart-info-block">
     <div class="col-lg-12">
         <div class="well">
@@ -84,56 +89,62 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ex, quia aliquid aut necessitatibus, repellat error ullam fugit asperiores vero doloribus, eius quos saepe molestiae at odio expedita inventore dolores iste doloremque tenetur officia, veritatis. Incidunt, facilis dicta sed dignissimos dolores consectetur nam sint, quis, perferendis eaque totam tenetur placeat.</p>
             <div class="row">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <form class="form-horizontal" name="orderForm" method="post" action="/thanks.php">
+
                         <div class="form-group">
-                            <label for="inputName4" class="col-sm-3 control-label">Имя</label>
+                            <label for="inputName4" class="col-sm-3 control-label">Имя<span class="req">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputName4" placeholder="Иванов Иван Иванович">
+                                <?= $form->field($order, 'name')->textInput(['placeholder' => 'Иванов Иван Иванович'])->label(false); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPhone4" class="col-sm-3 control-label">Телефон</label>
+                            <label for="inputPhone4" class="col-sm-3 control-label">Телефон<span class="req">*</span></label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputPhone4" placeholder="380631234567">
+                                <?= $form->field($order, 'phone')->textInput(['placeholder' => '380631234567'])->label(false); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail4" class="col-sm-3 control-label">Email</label>
+                            <label for="inputEmail4" class="col-sm-3 control-label">Email<span class="req">*</span></label>
                             <div class="col-sm-9">
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="mail@example.com">
+                                <?= $form->field($order, 'email')->textInput(['placeholder' => 'mail@example.com'])->label(false); ?>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress4" class="col-sm-3 control-label">Адрес доставки</label>
+                            <label for="inputAddress4" class="col-sm-3 control-label">Адрес доставки<span class="req">*</span></label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="inputAddress4" rows="3" placeholder="ул. Строителей, 42/53, домофон #53"></textarea>
+                                <?= $form->field($order, 'address')->textarea(['placeholder' => 'ул. Строителей, 42/53, домофон #53'])->label(false); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputAddress4" class="col-sm-3 control-label">Комментарий к заказу</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="inputAddress4" rows="3" placeholder="Ваш комментарий к этому заказу"></textarea>
+                                <?= $form->field($order, 'comment')->textarea(['placeholder' => 'Ваш комментарий к этому заказу'])->label(false); ?>
                             </div>
                         </div>
-                    </form>
+
 
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php else: ?>
 <div class="row">
+    <div class="col-lg-12 text-center">
+        <?= Html::submitButton('Оформить заказ', ['class' => 'btn btn-success btn-lg text-uppercase']); ?>
+    </div>
+</div>
+
+<?php \yii\widgets\ActiveForm::end(); ?>
+
+<?php else: ?>
+
+<div class="row cart-info-block">
     <div class="col-lg-12 text-center">
         <div class="alert alert-info" role="alert">Ваша корзина пуста</div>
     </div>
 </div>
+
 <?php endif; ?>
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <button type="button" onclick="document.orderForm.submit();" class="btn btn-success btn-lg text-uppercase">Оформить заказ</button>
-    </div>
-</div>
+
 </div><!-- /.content-block -->
 
 <div class="col-md-3 col-md-pull-9 sidebar-block">

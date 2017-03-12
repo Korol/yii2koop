@@ -306,6 +306,14 @@ h3.lined:before {
     background-color: #fff;
     padding: 15px 10px 15px 0;
 }
+.modal-del-item {
+    cursor: pointer;
+}
+.req {
+    color: red;
+    margin-left: 5px;
+    font-size: 14px;
+}
 
 /* Main Carousel */
 .main-carousel {

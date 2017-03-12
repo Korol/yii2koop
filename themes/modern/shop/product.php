@@ -56,24 +56,24 @@ if(!empty($product)):
                 </div>
             </div>
             <div class="well clearfix product-qty-block">
-                <span class="p-qty-price"><span id="pprice_1"><?= $product->price; ?></span> x</span>
+                <span class="p-qty-price"><span id="pprice_<?= $product->id; ?>"><?= $product->price; ?></span> x</span>
                 <div class="p-qty-num">
                     <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default ppqminus" type="button" id="ppqminus_1">
+                        <button class="btn btn-default ppqminus" type="button" id="ppqminus_<?= $product->id; ?>">
                             <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                         </button>
                     </span>
-                        <input type="text" class="form-control qty-input" value="1" readonly id="ppqty_1">
+                        <input type="text" class="form-control qty-input" value="1" readonly id="pqty_<?= $product->id; ?>">
                     <span class="input-group-btn">
-                        <button class="btn btn-default ppqplus" type="button" id="ppqplus_1">
+                        <button class="btn btn-default ppqplus" type="button" id="ppqplus_<?= $product->id; ?>">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                         </button>
                     </span>
                     </div><!-- /input-group -->
                 </div>
-                <span class="p-qty-price">= <span id="pcost_1"><?= $product->price; ?></span> грн</span>
-                <button type="button" onclick="document.location.href='/cart.php';" class="btn btn-success btn-lg pull-right">Купить</button>
+                <span class="p-qty-price">= <span id="pcost_<?= $product->id; ?>"><?= $product->price; ?></span> грн</span>
+                <a href="<?=Url::to(['cart/add', 'id' => $product->id]); ?>" data-id="<?=$product->id; ?>" class="btn btn-success pull-right btn-lg grid-buy-btn">Купить</a>
             </div>
             <div class="row pc-description">
                 <div class="col-xs-12">

@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use app\components\MyAray;
 use app\models\Category;
+use Yii;
 
 class FrontendController extends AppController{
 
@@ -22,8 +23,14 @@ class FrontendController extends AppController{
     {
         $this->getThemeName();
         $this->getSidebarMenu();
+        $this->getCartQty();
     }
 
+    /**
+     * @param null $title
+     * @param null $keywords
+     * @param null $description
+     */
     protected function setMeta($title = null, $keywords = null, $description = null)
     {
         $this->view->title = (!empty($title)) ? $title . ' | ' . $this->title_part : $this->title_part;
@@ -31,6 +38,9 @@ class FrontendController extends AppController{
         $this->view->registerMetaTag(['name' => 'description', 'content' => "$description"]);
     }
 
+    /**
+     *
+     */
     public function getThemeName()
     {
         $themeBaseUrl = $this->view->theme->getBaseUrl();
@@ -41,6 +51,9 @@ class FrontendController extends AppController{
         return;
     }
 
+    /**
+     *
+     */
     public function getSidebarMenu()
     {
         $this->sidebarMenuData = Category::find()->indexBy('id')->asArray()->all();
@@ -48,6 +61,12 @@ class FrontendController extends AppController{
         return;
     }
 
+    /**
+     * @param string $id_field
+     * @param string $parent_field
+     * @param string $childrens_key
+     * @return array
+     */
     protected function getTree($id_field = 'id', $parent_field = 'parent_id', $childrens_key = 'childs'){
         $tree = [];
         if(!empty($this->sidebarMenuData)){
@@ -63,6 +82,9 @@ class FrontendController extends AppController{
         return $tree;
     }
 
+    /**
+     * @param int $id
+     */
     public function setActiveCategory($id = 0)
     {
         if(!empty($this->view->params['sidebar_menu'])){
@@ -92,6 +114,11 @@ class FrontendController extends AppController{
         $this->view->params['active_category_id'] = $id;
     }
 
+    /**
+     * @param $array
+     * @param int $key
+     * @param $result
+     */
     public function buildConnected($array, $key = 0, &$result){
         foreach($array as $row){
             $result[$key][] = $row['id'];
@@ -101,6 +128,10 @@ class FrontendController extends AppController{
         }
     }
 
+    /**
+     * @param $category_id
+     * @return array
+     */
     public function getSubcategoriesIds($category_id)
     {
         $all_categories = Category::find()->indexBy('id')->asArray()->all();
@@ -114,6 +145,14 @@ class FrontendController extends AppController{
         return array();
     }
 
+    /**
+     * @param $src_arr
+     * @param $currentid
+     * @param bool $parentfound
+     * @param array $cats
+     * @return array
+     * //$list = fetch_recursive($cats, 6);
+     */
     public function fetch_recursive($src_arr, $currentid, $parentfound = false, $cats = array())
     {
         foreach($src_arr as $row)
@@ -130,6 +169,11 @@ class FrontendController extends AppController{
         }
         return $cats;
     }
-//$list = fetch_recursive($cats, 6);
 
+    public function getCartQty()
+    {
+        $session = Yii::$app->session;
+        $session->open();
+        $this->view->params['cart_qty'] = (!empty($session['cart.qty'])) ? '(' . $session['cart.qty'] . ')' : '';
+    }
 } 

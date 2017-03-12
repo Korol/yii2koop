@@ -17,8 +17,8 @@ class ShopController extends FrontendController {
 
     public function actionIndex()
     {
-        $popular_products = Product::find()->where(['popular' => '1'])->all();
-        $sale_products = Product::find()->where(['sale' => '1'])->all();
+        $popular_products = Product::find()->where(['popular' => '1', 'show' => 1])->all();
+        $sale_products = Product::find()->where(['sale' => '1', 'show' => 1])->all();
         $new_products = $hit_products = $recommended_products = [];
         $carousel = [
             0 => ['image' => '1.jpg'],
@@ -29,9 +29,9 @@ class ShopController extends FrontendController {
         ]; // TODO: сделать управление баннерами через Админку
 
         if($this->themeName == 'basic'){
-            $new_products = Product::find()->where(['new' => '1'])->all();
-            $hit_products = Product::find()->where(['hit' => '1'])->all();
-            $recommended_products = Product::find()->where(['recommended' => '1'])->all();
+            $new_products = Product::find()->where(['new' => '1', 'show' => 1])->all();
+            $hit_products = Product::find()->where(['hit' => '1', 'show' => 1])->all();
+            $recommended_products = Product::find()->where(['recommended' => '1', 'show' => 1])->all();
             $carousel = [];
         }
         $this->setMeta();
@@ -47,10 +47,10 @@ class ShopController extends FrontendController {
         $this->setActiveCategory($id);
         $sub_categories = $this->getSubcategoriesIds($id);
         if(!empty($sub_categories)){
-            $query = Product::find()->where(['in', 'category_id', $sub_categories]);
+            $query = Product::find()->where(['in', 'category_id', $sub_categories])->andWhere(['show' => 1]);
         }
         else{
-            $query = Product::find()->where(['category_id' => $id]);
+            $query = Product::find()->where(['category_id' => $id])->andWhere(['show' => 1]);
         }
         $pages = new Pagination([
             'totalCount' => $query->count(),
@@ -87,7 +87,7 @@ class ShopController extends FrontendController {
         if(empty($search)){
             return $this->render('search', compact('search'));
         }
-        $query = Product::find()->where(['like', 'title', $search]);
+        $query = Product::find()->where(['like', 'title', $search])->andWhere(['show' => 1]);
         $pages = new Pagination([
             'totalCount' => $query->count(),
             'pageSize' => 15,
