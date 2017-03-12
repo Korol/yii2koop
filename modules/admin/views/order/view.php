@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     $items = $model->orderItem;
-    if(!empty($items)):
+    /*if(!empty($items)):
     ?>
         <h4>Товары в заказе:</h4>
         <div class="table-responsive">
@@ -84,6 +84,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tbody>
             </table>
         </div>
-    <?php endif; ?>
+    <?php endif;*/ ?>
 
 </div>
