@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL);
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\helpers\Url;
