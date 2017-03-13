@@ -104,6 +104,7 @@ $config = [
                 // статика
                 '<alias:(payment|delivery|about|guarantees|partners)>' => 'site/static',
                 'contact' => 'site/contact',
+                'page/<slug:[-\w]+>' => 'page/view',
             ],
         ],
         'view' => [
@@ -137,6 +138,7 @@ $config = [
             'debug/*',
             'yii2images/*',
             'cart/*',
+            'page/*'
 //            'elfinder/*',
 //            'admin/*',
 //            'rbac/*',

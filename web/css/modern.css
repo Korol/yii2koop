@@ -356,4 +356,10 @@ h3.lined:before {
     background-color: #3CC440;
 }
 
-
+/* Page */
+.page-title {
+    margin-top: 0;
+}
+.page-content {
+    padding: 15px 10px 20px;
+}

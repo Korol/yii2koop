@@ -62,6 +62,7 @@ ltAppAsset::register($this);
                     ['label' => 'Категории', 'url' => ['/admin/category']],
                     ['label' => 'Производители', 'url' => ['/admin/producer']],
                     ['label' => 'Поставщики', 'url' => ['/admin/provider']],
+                    ['label' => 'Страницы', 'url' => ['/admin/page']],
                     ['label' => 'Пользователи', 'url' => ['/rbac/user']],
 //                    ['label' => 'Личка', 'url' => ['/private/index']],
                     Yii::$app->user->isGuest ? (

@@ -70,23 +70,23 @@ ltAppAsset::register($this);
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">О НАС <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/shop">Договор</a></li>
-                        <li><a href="/shop">Наши партнеры</a></li>
-                        <li><a href="/shop">Полезное</a></li>
-                        <li><a href="/shop">ЧАВО</a></li>
+                        <li><a href="/page/dogovor">Договор</a></li>
+                        <li><a href="/page/nashi-partnery">Наши партнеры</a></li>
+                        <li><a href="/page/poleznoe">Полезное</a></li>
+                        <li><a href="/page/chavo">ЧАВО</a></li>
                     </ul>
                 </li>
                 <li><a href="/shop">НОВОСТИ</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ДОСТАВКА <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/shop">Безоплатно</a></li>
-                        <li><a href="/shop">Оплата</a></li>
-                        <li><a href="/shop">Гарантии</a></li>
-                        <li><a href="/shop">График работы</a></li>
+                        <li><a href="/page/besplatnaya-dostavka">Безоплатно</a></li>
+                        <li><a href="/page/oplata">Оплата</a></li>
+                        <li><a href="/page/garantii">Гарантии</a></li>
+                        <li><a href="/page/grafik-raboty">График работы</a></li>
                     </ul>
                 </li>
-                <li><a href="/shop">КОНТАКТЫ</a></li>
+                <li><a href="/page/kontakty">КОНТАКТЫ</a></li>
             </ul>
             <!-- /top menu -->
             <ul class="nav navbar-nav navbar-right">
