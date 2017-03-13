@@ -14,7 +14,7 @@ use Yii;
 
 class FrontendController extends AppController{
 
-    public $title_part = 'Магазин | Народная Кооперация';
+    public $title_part = 'Магазин | Вкус Жизни';
     public $themeName = '';
     public $sidebarMenuData;
     public $sidebarMenuConnected = [];

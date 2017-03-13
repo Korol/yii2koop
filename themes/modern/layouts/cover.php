@@ -69,7 +69,7 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Народный Кооператив – Запорожье">
+    <meta name="description" content="Вкус Жизни – Запорожье">
     <meta name="author" content="">
     <?= Html::csrfMetaTags(); ?>
     <link rel="apple-touch-icon" sizes="76x76" href="/images/favicons/apple-touch-icon.png">
@@ -78,7 +78,7 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
     <link rel="manifest" href="/images/favicons/manifest.json">
     <link rel="mask-icon" href="/images/favicons/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="theme-color" content="#ffffff">
-    <title>Народный Кооператив – Запорожье</title>
+    <title>Вкус Жизни – Запорожье</title>
     <?php $this->head() ?>
 </head>
 <body>
