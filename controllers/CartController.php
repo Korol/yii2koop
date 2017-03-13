@@ -102,13 +102,13 @@ class CartController extends FrontendController
                 $this->saveOrderItems($session['cart'], $order->id);
                 // send client email
                 Yii::$app->mailer->compose('order', ['session' => $session])
-                    ->setFrom(['test@mail.ru' => 'Чудесный магазин'])
+                    ->setFrom(['koop@andkorol.com' => 'Чудесный магазин'])
                     ->setTo($order->email)
                     ->setSubject('Заказ №' . $order->id)
                     ->send();
                 // send admin email
                 Yii::$app->mailer->compose('order', ['session' => $session])
-                    ->setFrom(['test@mail.ru' => 'Чудесный магазин'])
+                    ->setFrom(['koop@andkorol.com' => 'Чудесный магазин'])
                     ->setTo(Yii::$app->params['adminEmail'])
                     ->setSubject('Заказ №' . $order->id)
                     ->send();
