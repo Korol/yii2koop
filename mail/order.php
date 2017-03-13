@@ -1,3 +1,5 @@
+<h3>Ваш заказ №<?= $order_id; ?> в интернет-магазине «Вкус Жизни»</h3>
+<br/>
 <div class="table-responsive">
     <table style="width: 100%; border: 1px solid #ddd; border-collapse: collapse;">
         <thead>
@@ -18,7 +20,7 @@
             </tr>
         <?php endforeach; ?>
         <tr>
-            <td style="padding: 8px; border: 1px solid #ddd; text-align: right" colspan="3" class="text-right">Итого: </td>
+            <td style="padding: 8px; border: 1px solid #ddd; text-align: right" colspan="3" class="text-right"><b>Итого:</b> </td>
             <td style="padding: 8px; border: 1px solid #ddd;" colspan="1"><?= number_format((float)$session['cart.sum'], 2); ?> грн.</td>
         </tr>
         </tbody>
