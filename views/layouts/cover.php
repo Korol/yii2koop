@@ -138,7 +138,7 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                                 <div class="logo pull-left">
                                     <a href="<?= Url::home(); ?>">
                                         <img class="main-logo" src="/images/home/logo_100x100.png" alt="<?=$this->title; ?>" align="left" />
-                                        <p class="main-logo-title pull-right">Народная<br/>кооперация</p>
+                                        <p class="main-logo-title pull-right">Вкус<br/>Жизни</p>
                                     </a>
                                 </div>
                             </div>
