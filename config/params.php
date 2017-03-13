@@ -2,5 +2,5 @@
 
 return [
     'adminEmail' => 'edok@i.ua',
-    'orderSendEmail' => 'info@вкус-жизни.com',
+    'orderSendEmail' => idn_to_ascii('info@вкус-жизни.com'),
 ];
