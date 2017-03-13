@@ -94,7 +94,8 @@ $config = [
                 'shop/search/<page:\d+>' => 'shop/search',
                 'shop/search' => 'shop/search',
                 // новости
-                'news/article/<id:\d+>/<slug:[-\w]+>' => 'news/article',
+//                'news/article/<id:\d+>/<slug:[-\w]+>' => 'news/article',
+                'news/<id:\d+>/<slug:[-\w]+>' => 'news/view',
                 'news/<page:\d+>' => 'news/index',
                 'news' => 'news/index',
                 // блог

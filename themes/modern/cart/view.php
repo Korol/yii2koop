@@ -148,5 +148,5 @@ use yii\helpers\Url;
 </div><!-- /.content-block -->
 
 <div class="col-md-3 col-md-pull-9 sidebar-block">
-    <?php echo $this->render('_sidebar_menu'); ?>
+    <?php echo $this->render('/shop/_sidebar_menu'); ?>
 </div><!-- /.sidebar-block -->

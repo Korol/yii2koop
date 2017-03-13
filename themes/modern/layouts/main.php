@@ -76,7 +76,7 @@ ltAppAsset::register($this);
                         <li><a href="/page/chavo">ЧАВО</a></li>
                     </ul>
                 </li>
-                <li><a href="/shop">НОВОСТИ</a></li>
+                <li><a href="/news">НОВОСТИ</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ДОСТАВКА <span class="caret"></span></a>
                     <ul class="dropdown-menu">

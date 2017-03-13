@@ -19,9 +19,9 @@ mihaildev\elfinder\Assets::noConflict($this);
 
     <?= $form->field($model, 'title')->hiddenInput()->label(false) ?>
 
-    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'keywords')->textInput(['maxlength' => true, 'placeholder' => 'МЕТА-тег keywords']) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 3]) ?>
+    <?= $form->field($model, 'description')->textarea(['rows' => 3, 'placeholder' => 'МЕТА-тег description']) ?>
 
     <?php
     echo $form->field($model, 'content')->widget(CKEditor::className(),[

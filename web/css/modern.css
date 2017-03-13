@@ -363,3 +363,38 @@ h3.lined:before {
 .page-content {
     padding: 15px 10px 20px;
 }
+
+/* News */
+.news-list-header > a {
+    color: #000;
+}
+.news-list-pubdate {
+    color: #888;
+    margin-top: 30px;
+    font-style: italic;
+}
+.news-list-cut-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.news-list-item-block {
+    margin-bottom: 30px;
+}
+.news-list-items-divider {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+/* Pagination */
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+    background-color: #3CC440;
+    border-color: #3CC440;
+}
+.pagination > li > a,
+.pagination > li > span {
+    color: #3CC440;
+}
