@@ -3,7 +3,7 @@
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-        <?php for($i = 0; $i <= sizeof($slides); $i++): ?>
+        <?php for($i = 0; $i < sizeof($slides); $i++): ?>
             <li data-target="#carousel-example-generic" data-slide-to="<?= $i; ?>" class="<?= ($i == 0) ? 'active' : ''; ?>"></li>
         <?php endfor; ?>
         </ol>
