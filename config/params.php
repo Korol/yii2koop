@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'adminEmail' => 'andkorol@gmail.com',
-    'orderSendEmail' => 'koop@andkorol.com',
+    'adminEmail' => 'edok@i.ua',
+    'orderSendEmail' => 'info@вкус-жизни.com',
 ];
