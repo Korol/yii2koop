@@ -33,6 +33,9 @@ body {
     top: 15px;
     font-size: 20px;
 }
+.logout-btn {
+    margin-top: 8px;
+}
 
 /* Sidebar menu */
 .sidebar-menu-block {

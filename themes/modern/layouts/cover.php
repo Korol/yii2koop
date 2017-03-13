@@ -28,15 +28,15 @@ $top_menu = [
     ],
     'payment' => [
         'title' => 'Оплата',
-        'url' => Url::to(['site/static', 'alias' => 'payment']),
+        'url' => Url::to(['page/view', 'slug' => 'oplata']),
     ],
     'delivery' => [
-        'title' => 'Доставка',
-        'url' => Url::to(['site/static', 'alias' => 'delivery']),
+        'title' => 'Полезное',
+        'url' => Url::to(['page/view', 'slug' => 'poleznoe']),
     ],
     'guarantees' => [
         'title' => 'Гарантии',
-        'url' => Url::to(['site/static', 'alias' => 'guarantees']),
+        'url' => Url::to(['page/view', 'slug' => 'garantii']),
     ],
     'news' => [
         'title' => 'Новости',
@@ -44,19 +44,19 @@ $top_menu = [
     ],
     'blog' => [
         'title' => 'Блог',
-        'url' => Url::to(['blog/index']),
+        'url' => Url::to(['shop/index']),
     ],
     'partners' => [
         'title' => 'Партнеры',
-        'url' => Url::to(['site/static', 'alias' => 'partners']),
+        'url' => Url::to(['page/view', 'slug' => 'nashi-partnery']),
     ],
     'about' => [
-        'title' => 'О нас',
-        'url' => Url::to(['site/static', 'alias' => 'about']),
+        'title' => 'График работы',
+        'url' => Url::to(['page/view', 'slug' => 'grafik-raboty']),
     ],
     'contact' => [
         'title' => 'Контакты',
-        'url' => Url::to(['site/contact']),
+        'url' => Url::to(['page/view', 'slug' => 'kontakty']),
     ],
 ];
 $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['active_menu_item'] : '';
@@ -108,14 +108,11 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                                     <form action="<?=Url::to(['shop/search']); ?>" method="get">
                                         <div class="input-group input-group-sm">
                                             <input type="text" class="form-control top-s-input" aria-label="" name="search" placeholder="Поиск" maxlength="30">
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Поиск по <span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="#">Названию</a></li>
-                                                    <li><a href="#">Производителю</a></li>
-                                                    <li><a href="#">Артикулу</a></li>
-                                                </ul>
-                                            </div><!-- /btn-group -->
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="submit">
+                                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                </button>
+                                            </span>
                                         </div><!-- /input-group -->
                                     </form>
                                 </div>
@@ -169,11 +166,11 @@ $active_menu_item = isset($this->params['active_menu_item']) ? $this->params['ac
                             <div class="col-sm-2">
                                 <div class="shop-menu pull-right">
                                     <ul class="nav navbar-nav my-service-menu">
-                                        <li><a href="/private"><i class="fa fa-user"></i> Личный Кабинет</a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина (23)</a></li>
+                                        <?php /*li><a href="/private"><i class="fa fa-user"></i> Личный Кабинет</a></li*/?>
+                                        <li><a href="#"><i class="fa fa-shopping-cart"></i> Корзина <span id="top_cart_qty"><?= $this->params['cart_qty']; ?></a></li>
                                         <li>
                                         <?php if (Yii::$app->user->isGuest): ?>
-                                        <i class="fa fa-lock"></i><a href="/site/login">Вход</a> &nbsp;|&nbsp; <a href="/site/signup">Регистрация</a>
+                                        <i class="fa fa-lock"></i><a href="/site/login">Вход</a><?php /* &nbsp;|&nbsp; <a href="/site/signup">Регистрация</a*/?>
                                         <?php else: ?>
                                             <?= Html::beginForm(['/site/logout'], 'post', ['class' => '']); ?>
                                             <?= Html::submitButton(

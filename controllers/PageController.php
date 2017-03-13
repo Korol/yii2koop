@@ -15,7 +15,7 @@ class PageController extends FrontendController
 
     public function actionView($slug)
     {
-        if(empty($slug)) $this->redirect(Url::to(['/shop']));
+        if(empty($slug)) return $this->redirect(Url::to(['/shop']));
 
         $page = Page::find()->where(['slug' => $slug, 'show' => 1])->one();
         $this->setMeta($page['title'], $page['keywords'], $page['description']);

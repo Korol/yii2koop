@@ -71,6 +71,7 @@ class SiteController extends FrontendController
      */
     public function actionSignup()
     {
+        return $this->redirect(['login']);
         $model = new Signup();
         if ($model->load(Yii::$app->getRequest()->post())) {
             if ($user = $model->signup()) {
@@ -123,7 +124,8 @@ class SiteController extends FrontendController
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        //return $this->goHome();
+        return $this->redirect(['/shop']);
     }
 
     /**

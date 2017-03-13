@@ -94,7 +94,18 @@ ltAppAsset::register($this);
                 <!-- <li><a href="#">Вход</a></li>
                 <li><a href="#">Регистрация</a></li> -->
                 <li><a href="#" onclick="return getModalCart();">Корзина <span id="top_cart_qty"><?= $this->params['cart_qty']; ?></span></a></li>
-                <li><a href="<?=Url::to(['/admin']); ?>">Вход</a></li>
+                <li>
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <a href="<?=Url::to(['/admin']); ?>">Вход</a>
+                <?php else: ?>
+                    <?= Html::beginForm(['/site/logout'], 'post', ['class' => '']); ?>
+                    <?= Html::submitButton(
+                        'Выйти (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout-btn']
+                    ); ?>
+                    <?= Html::endForm(); ?>
+                <?php endif; ?>
+                </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
