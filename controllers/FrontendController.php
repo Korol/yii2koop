@@ -71,6 +71,7 @@ class FrontendController extends AppController{
         $tree = [];
         if(!empty($this->sidebarMenuData)){
             foreach ($this->sidebarMenuData as $id => &$node) {
+                if($node['show'] == 0) continue; // скрытые категории и их потомки не входят в меню
                 if(!$node[$parent_field]){
                     $tree[$id] = &$node;
                 }
